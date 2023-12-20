@@ -3,7 +3,7 @@ import { allowAll } from "@keystone-6/core/access";
 import { text, password, timestamp, integer } from "@keystone-6/core/fields";
 
 import { type Lists } from ".keystone/types";
-import { Roles } from "../src/lib/types/roles";
+import { Roles } from "../src/lib/types/auth";
 
 export const User: Lists.User = list({
   // WARNING
