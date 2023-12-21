@@ -10,6 +10,7 @@ import {
   GRAPHQL_PATH,
   KS_PORT,
 } from "./src/lib/variables";
+import { Role } from "./src/lib/types/auth";
 
 export default withAuth(
   config({
@@ -18,7 +19,7 @@ export default withAuth(
     },
     ui: {
       // fix: AdminMeta access denied when login to admin ui
-      isAccessAllowed: (context) => !!context.session,
+      isAccessAllowed: (ctx) => ctx.session?.data?.role === Role.Admin,
     },
     db: {
       provider: DB_PROVIDER,
