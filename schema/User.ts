@@ -25,6 +25,7 @@ export const User: Lists.User = list({
           label: key,
           value: Role[key as RoleName],
         })),
+      ui: { itemView: { fieldMode: "read", fieldPosition: "sidebar" } },
     }),
   },
 });
