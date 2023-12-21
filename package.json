@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "preinstall": "only-allow npm",
-    "postinstall": "keystone postinstall --fix",
+    "postinstall": "keystone postinstall --fix && npx --yes husky install",
     "db:up": "docker compose up db -d",
     "db:down": "docker compose down db",
     "dev:nx": "npm run db:up && next dev --port 4000",
@@ -14,8 +14,7 @@
     "start:ks": "keystone start",
     "build:ks": "keystone build",
     "dev": "npm-run-all -l -p dev:*",
-    "push": "keystone prisma db push",
-    "commitlint": "commitlint --edit"
+    "push": "keystone prisma db push"
   },
   "dependencies": {
     "@keystone-6/auth": "^7.0.2",
