@@ -16,7 +16,7 @@ FROM deps as build
 
 COPY . .
 
-RUN npm run postinstall && \
+RUN npx --yes keystone postinstall --fix && \
     npm run build:ks 
 
 CMD DB_PROVIDER=${DB_PROVIDER} npm run start:ks
