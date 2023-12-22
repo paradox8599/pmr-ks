@@ -4,6 +4,7 @@ import { text, password, timestamp, select } from "@keystone-6/core/fields";
 
 import { type Lists } from ".keystone/types";
 import { Role, RoleName } from "../src/lib/types/auth";
+import { createdAtField } from "../admin/helpers/fields";
 
 export const User: Lists.User = list({
   // WARNING
@@ -15,7 +16,7 @@ export const User: Lists.User = list({
     name: text({}),
     email: text({ validation: { isRequired: true }, isIndexed: "unique" }),
     password: password({ validation: { isRequired: true } }),
-    createdAt: timestamp({ defaultValue: { kind: "now" } }),
+    createdAt: createdAtField(),
     role: select({
       type: "integer",
       defaultValue: Role.None,
