@@ -14,9 +14,9 @@ DB_PROVIDER = "postgresql"
 
 [env]
 KS_PORT = "3000"
-# DATABASE_URL = "" # secret
 NEXT_PUBLIC_GRAPHQL_PATH = "/api/graphql"
 NEXT_PUBLIC_SERVER_URL = "https://nextks.fly.dev"
+# DATABASE_URL = "" # secret
 
 [http_service]
 internal_port = 3000
