@@ -1,23 +1,12 @@
 import { UserAuthenticationWithPasswordResult } from "../types/auth";
-import { graphql, useGraphql } from "./base";
-
-export function useUsers() {
-  return useGraphql(/* GraphQL */ `
-    query {
-      users {
-        id
-        name
-      }
-    }
-  `);
-}
+import { graphql } from "./base";
 
 export async function authenticateUserWithPassword(variables: {
   email: string;
   password: string;
 }) {
-  const response = await graphql(
-    /* GraphQL */ `
+  const response = await graphql({
+    query: /* GraphQL */ `
       mutation Mutation($email: String!, $password: String!) {
         authenticateUserWithPassword(email: $email, password: $password) {
           ... on UserAuthenticationWithPasswordSuccess {
@@ -34,8 +23,8 @@ export async function authenticateUserWithPassword(variables: {
         }
       }
     `,
-    variables
-  );
+    variables,
+  });
   return response.data
     ?.authenticateUserWithPassword as UserAuthenticationWithPasswordResult;
 }
