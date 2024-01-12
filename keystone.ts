@@ -18,8 +18,39 @@ export default withAuth(
       port: KS_PORT,
     },
     ui: {
-      // fix: AdminMeta access denied when login to admin ui
-      isAccessAllowed: (ctx) => ctx.session?.data?.role === Role.Admin,
+      isAccessAllowed: (ctx) => (ctx.session?.data?.role & (Role.Admin | Role.User)) > 0,
+    },
+    storage: {
+      r2_file: {
+        kind: "s3",
+        type: "file",
+        region: "auto",
+        bucketName: process.env.STORE_FILE_BUCKET!,
+        accessKeyId: process.env.STORE_FILE_ACCESS_KEY_ID,
+        secretAccessKey: process.env.STORE_FILE_SECRET_ACCESS_KEY,
+        endpoint: process.env.STORE_FILE_ENDPOINT,
+        generateUrl: (path) => {
+          const original = new URL(path);
+          const customUrl = new URL(original.pathname, process.env.STORE_FILE_CUSTOM_URL ?? original.origin);
+          return customUrl.href;
+        },
+        pathPrefix: process.env.STORE_FILE_PREFIX,
+      },
+      r2_image: {
+        kind: "s3",
+        type: "image",
+        region: "auto",
+        bucketName: process.env.STORE_IMAGE_BUCKET!,
+        accessKeyId: process.env.STORE_IMAGE_ACCESS_KEY_ID,
+        secretAccessKey: process.env.STORE_IMAGE_SECRET_ACCESS_KEY,
+        endpoint: process.env.STORE_IMAGE_ENDPOINT,
+        generateUrl: (path) => {
+          const original = new URL(path);
+          const customUrl = new URL(original.pathname, process.env.STORE_IMAGE_CUSTOM_URL ?? original.origin);
+          return customUrl.href;
+        },
+        pathPrefix: process.env.STORE_IMAGE_PREFIX,
+      }
     },
     db: {
       provider: DB_PROVIDER,
