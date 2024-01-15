@@ -1,4 +1,4 @@
-# Next.js & Keystone.js
+# Next.js & Keystone.js for Client Record Management
 
 ## Setup
 
