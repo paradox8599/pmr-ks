@@ -7,10 +7,6 @@ import { Role, RoleName } from "../src/lib/types/auth";
 import { createdAtField, updatedAtField } from "../admin/helpers/fields";
 
 export const User: Lists.User = list({
-  // WARNING
-  //   for this example, anyone can create, query, update and delete anything
-  //   if you want to prevent random people on the internet from accessing your data,
-  //   you can find out more at https://keystonejs.com/docs/guides/auth-and-access-control
   access: allowAll,
   fields: {
     name: text({}),
@@ -18,7 +14,7 @@ export const User: Lists.User = list({
     password: password({ validation: { isRequired: true } }),
     role: select({
       type: "integer",
-      defaultValue: Role.None,
+      defaultValue: Role.User,
       options: Object.keys(Role)
         .filter((v) => isNaN(Number(v)))
         .map((key) => ({
