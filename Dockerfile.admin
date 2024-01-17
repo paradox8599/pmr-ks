@@ -1,4 +1,4 @@
-FROM node:18-slim as base
+FROM node:18-alpine as base
 
 ARG DB_PROVIDER="sqlite"
 ENV DB_PROVIDER=${DB_PROVIDER}
@@ -16,6 +16,7 @@ FROM deps as build
 
 COPY . .
 
+RUN npm i @esbuild/linux-x64
 RUN npx --yes keystone postinstall --fix
 RUN npm run build:ks 
 
