@@ -18,7 +18,8 @@ export default withAuth(
       port: KS_PORT,
     },
     ui: {
-      isAccessAllowed: (ctx) => (ctx.session?.data?.role & (Role.Admin | Role.User)) > 0,
+      isAccessAllowed: (ctx) =>
+        (ctx.session?.data?.role & (Role.Admin | Role.User)) > 0,
     },
     storage: {
       r2_image: {
@@ -31,11 +32,14 @@ export default withAuth(
         endpoint: process.env.STORE_IMAGE_ENDPOINT,
         generateUrl: (path) => {
           const original = new URL(path);
-          const customUrl = new URL(original.pathname, process.env.STORE_IMAGE_CUSTOM_URL ?? original.origin);
+          const customUrl = new URL(
+            original.pathname,
+            process.env.STORE_IMAGE_CUSTOM_URL ?? original.origin,
+          );
           return customUrl.href;
         },
         pathPrefix: process.env.STORE_IMAGE_PREFIX,
-      }
+      },
     },
     db: {
       provider: DB_PROVIDER,
@@ -44,5 +48,5 @@ export default withAuth(
     lists,
     graphql: { path: GRAPHQL_PATH },
     session,
-  })
+  }),
 );
