@@ -3,6 +3,7 @@ import { type FieldProps } from '@keystone-6/core/types'
 import { FieldContainer, FieldLabel, TextInput, Checkbox } from '@keystone-ui/fields'
 import { type controller } from '@keystone-6/core/fields/types/json/views'
 import { globalStyles } from './global.style'
+import { useJson } from './hooks/useJson'
 
 
 type AC = {
@@ -44,11 +45,7 @@ const acKeys = [
 ] as const;
 
 export const Field = ({ field, value, onChange }: FieldProps<typeof controller>) => {
-  const [data, setData] = React.useState<AC>(value ? JSON.parse(value) : {})
-
-  React.useEffect(() => {
-    onChange?.(JSON.stringify(data));
-  }, [data, onChange])
+  const { data, setData } = useJson<AC>({ value, onChange })
 
   return (
     <FieldContainer>
