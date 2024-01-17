@@ -1,6 +1,6 @@
 import React from 'react'
 import { type FieldProps } from '@keystone-6/core/types'
-import { FieldContainer, FieldLabel, TextInput, Switch } from '@keystone-ui/fields'
+import { FieldContainer, FieldLabel, Switch } from '@keystone-ui/fields'
 import { type controller } from '@keystone-6/core/fields/types/json/views'
 import { useJson } from './hooks/useJson'
 

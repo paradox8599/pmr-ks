@@ -45,9 +45,13 @@ export const gsaForm: Lists.gsaForm = list({
       ui: { description: "Main Complaint & History" },
       formatting: true,
     }),
-
-    // TODO: observation
-
+    observation: json({
+      ui: {
+        description:
+          "Observation & Palpation of Posture (include major areas of asymmetry pain tension & tone)",
+        views: "./schema/views/observation",
+      },
+    }),
     assessmentItems: json({
       ui: {
         description:

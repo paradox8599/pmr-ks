@@ -17,6 +17,9 @@ KS_PORT = "3000"
 NEXT_PUBLIC_GRAPHQL_PATH = "/api/graphql"
 NEXT_PUBLIC_SERVER_URL = "https://pmrks.fly.dev"
 # DATABASE_URL = "" # secret
+STORE_IMAGE_BUCKET="pmrks"
+STORE_IMAGE_CUSTOM_URL=""
+STORE_IMAGE_PREFIX="images/"
 
 [http_service]
 internal_port = 3000
