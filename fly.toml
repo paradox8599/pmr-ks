@@ -5,6 +5,7 @@
 
 app = "pmrks"
 primary_region = "syd"
+swap_size_mb = 1024
 
 [build]
 dockerfile = "Dockerfile.admin"
@@ -37,4 +38,4 @@ processes = ["app"]
 [[vm]]
 cpu_kind = "shared"
 cpus = 1
-memory_mb = 512
+memory_mb = 256
