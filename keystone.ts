@@ -1,5 +1,3 @@
-import "dotenv/config";
-
 import { config } from "@keystone-6/core";
 
 import { session, withAuth } from "./auth";
