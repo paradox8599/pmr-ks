@@ -44,11 +44,11 @@ export default function Kanvas({
   }, []);
 
   React.useEffect(() => {
-    setWidth(divRef.current?.clientWidth);
+    setWidth(divRef.current?.clientWidth ?? 1);
 
     function onResize() {
       if (divRef.current?.clientWidth !== width) {
-        setWidth(divRef.current?.clientWidth);
+        setWidth(divRef.current?.clientWidth ?? 1);
       }
     }
     window.addEventListener("resize", onResize);
@@ -67,7 +67,7 @@ export default function Kanvas({
   // Redraw circles when data changes
   const redraw = React.useCallback(() => {
     layerRef.current?.destroyChildren();
-    data.map((point) => {
+    for (const point of data) {
       const circle = new Konva.Circle({
         x: point.x * width,
         y: point.y * height,
@@ -76,7 +76,7 @@ export default function Kanvas({
         strokeWidth: 3,
       });
       layerRef.current?.add(circle);
-    });
+    }
   }, [data, height, width]);
 
   React.useEffect(() => {
