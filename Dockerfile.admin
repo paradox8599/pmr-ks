@@ -16,6 +16,8 @@ FROM deps as build
 
 COPY . .
 
-RUN npm i @esbuild/linux-x64 && npx --yes keystone postinstall --fix && npm run build:ks 
+RUN npm i @esbuild/linux-x64 \
+    && npx --yes keystone postinstall --fix \
+    && npm run build:ks 
 
 CMD ["npm", "run", "start:ks"]
