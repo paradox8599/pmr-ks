@@ -16,7 +16,7 @@ export const Client: Lists.Client = list({
       many: true,
       ui: {
         displayMode: "cards",
-        cardFields: ["label", "image"],
+        cardFields: ["label", "image", "url"],
         inlineCreate: { fields: ["description", "image"] },
         inlineConnect: true,
       },
