@@ -24,7 +24,7 @@ export const Image: Lists.Image = list({
       field: graphql.field({
         type: graphql.String,
         resolve(item) {
-          return `${BUCKET.customUrl}/${BUCKET.prefix}${item.image_id}.${item.image_extension}`;
+          return `${BUCKET.customUrl}/${BUCKET.imagePrefix}${item.image_id}.${item.image_extension}`;
         },
       }),
     }),

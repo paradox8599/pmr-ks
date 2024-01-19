@@ -21,6 +21,7 @@ STORE_ENDPOINT=""
 STORE_CUSTOM_URL=""
 STORE_ACCESS_KEY_ID=""
 STORE_SECRET_ACCESS_KEY=""
+STORE_PREFIX_IMAGE="images/"
 
 # using nextjs graphql route as server so no need to start a keystone server
 NEXT_PUBLIC_SERVER_URL="http://localhost:4000"

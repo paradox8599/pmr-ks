@@ -24,4 +24,5 @@ export const BUCKET = {
   secretAccessKey: process.env.STORE_SECRET_ACCESS_KEY,
   endpoint: process.env.STORE_ENDPOINT,
   customUrl: process.env.STORE_CUSTOM_URL,
+  imagePrefix: process.env.STORE_PREFIX_IMAGE ?? "images/",
 };

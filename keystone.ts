@@ -31,7 +31,7 @@ export default withAuth(
         accessKeyId: BUCKET.accessKeyId,
         secretAccessKey: BUCKET.secretAccessKey,
         endpoint: BUCKET.endpoint,
-        pathPrefix: "images/",
+        pathPrefix: BUCKET.imagePrefix,
         generateUrl: (path) => {
           const original = new URL(path);
           const customUrl = new URL(original.pathname, BUCKET.customUrl);
