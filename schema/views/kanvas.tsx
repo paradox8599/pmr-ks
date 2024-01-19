@@ -2,14 +2,13 @@ import { Stage, Layer, Circle, Image as KonvaImage } from "react-konva";
 import React from "react";
 import Konva from "konva";
 
+import { Button } from "@keystone-ui/button";
+
 import { useJson } from "./hooks/useJson";
 
-type FieldValue = {};
-const initialValue: FieldValue[] = [] as const;
+type Point = { x: number; y: number };
+const initialValue: Point[] = [] as const;
 
-function ClickedCircle({ x, y }: { x: number; y: number }) {
-  return <Circle x={x} y={y} radius={10}></Circle>;
-}
 export default function Kanvas({
   value,
   onChange,
@@ -17,7 +16,7 @@ export default function Kanvas({
   value: string;
   onChange?: (value: string) => void;
 }) {
-  const { data, setData } = useJson<string>({
+  const { data, setData } = useJson<Point[]>({
     value,
     onChange,
     initialValue,
@@ -25,11 +24,13 @@ export default function Kanvas({
 
   const stageRef = React.useRef<Konva.Stage>(null);
   const divRef = React.useRef<HTMLDivElement>(null);
+  const layerRef = React.useRef<Konva.Layer>(null);
 
   const [ratio, setRatio] = React.useState<number>();
-  const [width, setWidth] = React.useState<number>();
+  const [width, setWidth] = React.useState<number>(1);
   const height = React.useMemo(() => {
-    return (width ?? 1) * (ratio ?? 1);
+    if (!width || !ratio) return 0;
+    return width * ratio;
   }, [width, ratio]);
 
   const image = React.useMemo(() => {
@@ -44,6 +45,7 @@ export default function Kanvas({
 
   React.useEffect(() => {
     setWidth(divRef.current?.clientWidth);
+
     function onResize() {
       if (divRef.current?.clientWidth !== width) {
         setWidth(divRef.current?.clientWidth);
@@ -55,13 +57,38 @@ export default function Kanvas({
     };
   }, [width]);
 
+  const addPointOnClick = () => {
+    const pos = stageRef.current?.getPointerPosition();
+    if (!pos) return;
+    const point = { x: pos.x / width, y: pos.y / height };
+    return setData((prev) => [...prev, point]);
+  };
+
+  // Redraw circles when data changes
+  const redraw = React.useCallback(() => {
+    layerRef.current?.destroyChildren();
+    data.map((point) => {
+      const circle = new Konva.Circle({
+        x: point.x * width,
+        y: point.y * height,
+        radius: 15,
+        stroke: "cyan",
+        strokeWidth: 3,
+      });
+      layerRef.current?.add(circle);
+    });
+  }, [data, height, width]);
+
+  React.useEffect(() => {
+    redraw();
+  }, [data, redraw]);
+
   return (
-    <div ref={divRef} style={{ border: "1px solid black" }}>
+    <div ref={divRef}>
       <Stage
         ref={stageRef}
-        onClick={(e) => {
-          const pos = stageRef.current?.getRelativePointerPosition();
-        }}
+        onTap={addPointOnClick}
+        onClick={addPointOnClick}
         height={height}
         width={width}
       >
@@ -70,8 +97,22 @@ export default function Kanvas({
           <KonvaImage image={image} width={width} height={height}></KonvaImage>
         </Layer>
         {/* Circle layer */}
-        <Layer></Layer>
+        <Layer ref={layerRef}></Layer>
       </Stage>
+      {/* actions */}
+      <div
+        style={{
+          padding: "0.5rem",
+          display: "flex",
+          justifyContent: "end",
+          gap: "0.5rem",
+        }}
+      >
+        <Button onClick={() => setData((prev) => prev.slice(0, -1))}>
+          Undo
+        </Button>
+        <Button onClick={() => setData([])}>Clear</Button>
+      </div>
     </div>
   );
 }
