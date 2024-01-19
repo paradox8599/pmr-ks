@@ -34,7 +34,7 @@ Check API explorer for query construction: `http://localhost:3000/api/graphql`
 
 ### Environment Variables
 
-Before `npm run build:nx`, `source .env && npm run postinstall` is required for generating prisma db config.
+Before build, `npm run postinstall` is required for generating prisma db config.
 
 ### Database initialization
 
@@ -46,9 +46,10 @@ Before `npm run build:nx`, `source .env && npm run postinstall` is required for 
 
 #### Deploy to <https://fly.io>
 
-- Create app if not created: `fly app create <app name>`
+- Create app if not exists: `fly app create <app name>`
 - Change build args & env in `fly.toml`
-- Set secrets: `fly secrets set <KEY>=<VALUE>`
+- Set secrets one by one: `fly secrets set <KEY>=<VALUE>`
+- Set secrets by import: `fly secrets import`, then enter or paste secret pairs
 - Deploy `fly deploy`
 
 #### Self Hosting
