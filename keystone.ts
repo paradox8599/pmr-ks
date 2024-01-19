@@ -27,16 +27,16 @@ export default withAuth(
         kind: "s3",
         type: "image",
         region: "auto",
-        bucketName: BUCKET.name,
+        bucketName: BUCKET.bucketName!,
         accessKeyId: BUCKET.accessKeyId,
         secretAccessKey: BUCKET.secretAccessKey,
         endpoint: BUCKET.endpoint,
+        pathPrefix: "images/",
         generateUrl: (path) => {
           const original = new URL(path);
           const customUrl = new URL(original.pathname, BUCKET.customUrl);
           return customUrl.href;
         },
-        pathPrefix: BUCKET.prefix,
       },
     },
     db: {

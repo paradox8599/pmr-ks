@@ -17,15 +17,14 @@ DB_PROVIDER = "postgresql"
 KS_PORT = "3000"
 NEXT_PUBLIC_GRAPHQL_PATH = "/api/graphql"
 NEXT_PUBLIC_SERVER_URL = "https://pmrks.fly.dev"
-STORE_IMAGE_BUCKET = "pmrks"
-STORE_IMAGE_PREFIX = "images/"
+STORE_BUCKET = "pmrks"
 
 # secrets
 # DATABASE_URL = ""
-# STORE_IMAGE_ACCESS_KEY_ID = ""
-# STORE_IMAGE_SECRET_ACCESS_KEY = ""
-# STORE_IMAGE_CUSTOM_URL = ""
-# STORE_IMAGE_ENDPOINT = ""
+# STORE_ACCESS_KEY_ID = ""
+# STORE_SECRET_ACCESS_KEY = ""
+# STORE_CUSTOM_URL = ""
+# STORE_ENDPOINT = ""
 
 [http_service]
 internal_port = 3000

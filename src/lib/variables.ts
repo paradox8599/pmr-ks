@@ -19,10 +19,9 @@ export const GRAPHQL_PATH =
 export const GRAPHQL_ENDPOINT = new URL(GRAPHQL_PATH, SERVER_URL);
 
 export const BUCKET = {
-  name: process.env.STORE_IMAGE_BUCKET ?? "pmrks",
-  accessKeyId: process.env.STORE_IMAGE_ACCESS_KEY_ID,
-  secretAccessKey: process.env.STORE_IMAGE_SECRET_ACCESS_KEY,
-  endpoint: process.env.STORE_IMAGE_ENDPOINT,
-  customUrl: process.env.STORE_IMAGE_CUSTOM_URL,
-  prefix: process.env.STORE_IMAGE_PREFIX,
+  bucketName: process.env.STORE_BUCKET!,
+  accessKeyId: process.env.STORE_ACCESS_KEY_ID,
+  secretAccessKey: process.env.STORE_SECRET_ACCESS_KEY,
+  endpoint: process.env.STORE_ENDPOINT,
+  customUrl: process.env.STORE_CUSTOM_URL,
 };
