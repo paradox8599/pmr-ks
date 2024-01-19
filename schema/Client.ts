@@ -11,7 +11,33 @@ export const Client: Lists.Client = list({
   fields: {
     name: text({ validation: { isRequired: true } }),
     phone: text({ validation: { isRequired: true }, isIndexed: "unique" }),
-    consentForm: relationship({ ref: "Image", many: true }),
+    consentForm: relationship({
+      ref: "Image",
+      many: true,
+      ui: {
+        displayMode: "cards",
+        cardFields: ["label", "image"],
+        inlineCreate: { fields: ["description", "image"] },
+        inlineConnect: true,
+      },
+      // hooks: {
+      //   afterOperation: async ({ operation, item, context, inputData }) => {
+      //     console.log(inputData);
+      //     async function fetchImages(id: string) {
+      //       return await context.query.Client.findOne({
+      //         where: { id },
+      //         query: "consentForm { id }",
+      //       });
+      //     }
+      //
+      //     if (operation === "create") return;
+      //     if (operation === "update") {
+      //       // const images = await fetchImages(item.id);
+      //       // console.log(images);
+      //     }
+      //   },
+      // },
+    }),
     createdAt: createdAtField(),
     updatedAt: updatedAtField(),
   },
