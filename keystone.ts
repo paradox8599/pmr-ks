@@ -26,7 +26,7 @@ export default withAuth(
         kind: "s3",
         type: "image",
         region: "auto",
-        bucketName: process.env.STORE_IMAGE_BUCKET!,
+        bucketName: process.env.STORE_IMAGE_BUCKET ?? "pmrks",
         accessKeyId: process.env.STORE_IMAGE_ACCESS_KEY_ID,
         secretAccessKey: process.env.STORE_IMAGE_SECRET_ACCESS_KEY,
         endpoint: process.env.STORE_IMAGE_ENDPOINT,
@@ -38,7 +38,7 @@ export default withAuth(
           );
           return customUrl.href;
         },
-        pathPrefix: process.env.STORE_IMAGE_PREFIX,
+        pathPrefix: process.env.STORE_IMAGE_PREFIX ?? "images/",
       },
     },
     db: {
