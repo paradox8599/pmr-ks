@@ -16,8 +16,6 @@ FROM deps as build
 
 COPY . .
 
-RUN npm i @esbuild/linux-x64
-RUN npx --yes keystone postinstall --fix
-RUN npm run build:ks 
+RUN npm i @esbuild/linux-x64 && npx --yes keystone postinstall --fix && npm run build:ks 
 
-CMD DB_PROVIDER=${DB_PROVIDER} npm run start:ks
+CMD ["npm", "run", "start:ks"]

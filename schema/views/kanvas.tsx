@@ -1,4 +1,4 @@
-import { Stage, Layer, Circle, Image as KonvaImage } from "react-konva";
+import { Stage, Layer, Image as KonvaImage } from "react-konva";
 import React from "react";
 import Konva from "konva";
 
