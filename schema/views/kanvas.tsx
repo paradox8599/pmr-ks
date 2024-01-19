@@ -43,6 +43,7 @@ export default function Kanvas({
     return img;
   }, []);
 
+  // set canvas/image width and watch for resize
   React.useEffect(() => {
     setWidth(divRef.current?.clientWidth ?? 1);
 
@@ -64,7 +65,7 @@ export default function Kanvas({
     return setData((prev) => [...prev, point]);
   };
 
-  // Redraw circles when data changes
+  // redraw circles when data changes
   const redraw = React.useCallback(() => {
     layerRef.current?.destroyChildren();
     for (const point of data) {
