@@ -16,10 +16,10 @@ KS_PORT=3000
 
 # sqlite | mysql | postgresql
 DB_PROVIDER="postgresql"
-DATABASE_URL="postgresql://nextks:nextks@localhost:5432/nextks"
+DATABASE_URL="postgresql://pmrks:pmrks@localhost:5432/pmrks"
 
 # Cloudflare R2 / AWS S3
-STORE_BUCKET="nextks"
+STORE_BUCKET="pmrks"
 STORE_ENDPOINT=""
 STORE_CUSTOM_URL=""
 STORE_ACCESS_KEY_ID=""
