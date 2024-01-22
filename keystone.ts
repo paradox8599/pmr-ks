@@ -2,8 +2,9 @@ import "dotenv/config";
 
 import { config } from "@keystone-6/core";
 
-import { session, withAuth } from "./auth";
+import { withAuth } from "./admin/auth";
 import { lists } from "./schema/_lists";
+import { redis, storedSession } from "./admin/session";
 import {
   BUCKET,
   DATABASE_URL,
@@ -42,9 +43,12 @@ export default withAuth(
     db: {
       provider: DB_PROVIDER,
       url: DATABASE_URL,
+      async onConnect() {
+        await redis.connect();
+      },
     },
     lists,
     graphql: { path: GRAPHQL_PATH },
-    session,
+    session: storedSession,
   }),
 );

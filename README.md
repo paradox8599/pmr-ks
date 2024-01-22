@@ -9,6 +9,9 @@
 create `.env` file for development:
 
 ```sh
+# development | production
+NODE_ENV = "development"
+
 KS_PORT=3000
 
 # sqlite | mysql | postgresql
@@ -22,6 +25,11 @@ STORE_CUSTOM_URL=""
 STORE_ACCESS_KEY_ID=""
 STORE_SECRET_ACCESS_KEY=""
 STORE_PREFIX_IMAGE="images/"
+
+# Redis for stored sessions
+REDIS_URL="redis://localhost:6379"
+REDIS_USERNAME="default"
+REDIS_PASSWORD="password"
 
 # using nextjs graphql route as server so no need to start a keystone server
 NEXT_PUBLIC_SERVER_URL="http://localhost:4000"
