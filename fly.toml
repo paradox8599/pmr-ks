@@ -15,17 +15,26 @@ DB_PROVIDER = "postgresql"
 
 [env]
 NODE_ENV = "production"
+
 KS_PORT = "3000"
-NEXT_PUBLIC_GRAPHQL_PATH = "/api/graphql"
-NEXT_PUBLIC_SERVER_URL = "https://pmrks.fly.dev"
+
 STORE_BUCKET = "pmrks"
 
+NEXT_PUBLIC_GRAPHQL_PATH = "/api/graphql"
+NEXT_PUBLIC_SERVER_URL = "https://pmrks.fly.dev"
+
 # secrets
+
 # DATABASE_URL = ""
+
 # STORE_ACCESS_KEY_ID = ""
 # STORE_SECRET_ACCESS_KEY = ""
 # STORE_CUSTOM_URL = ""
 # STORE_ENDPOINT = ""
+
+# REDIS_URL=""
+# REDIS_USERNAME=""
+# REDIS_PASSWORD=""
 
 [http_service]
 internal_port = 3000
