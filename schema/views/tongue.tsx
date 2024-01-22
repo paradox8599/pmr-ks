@@ -1,21 +1,25 @@
-import React from 'react'
-import { type FieldProps } from '@keystone-6/core/types'
-import { FieldContainer, FieldLabel, TextInput } from '@keystone-ui/fields'
-import { type controller } from '@keystone-6/core/fields/types/json/views'
-import { useJson } from './hooks/useJson'
+import { type controller } from "@keystone-6/core/fields/types/json/views";
+import { type FieldProps } from "@keystone-6/core/types";
+import { FieldContainer, FieldLabel, TextInput } from "@keystone-ui/fields";
+import React from "react";
+import { useJson } from "./hooks/useJson";
 type FieldValue = {
-  body: string,
-  colour: string,
-  coatColor: string
-}
+  body: string;
+  colour: string;
+  coatColor: string;
+};
 const initialValue: FieldValue = {
   body: "",
   colour: "",
-  coatColor: ""
-}
+  coatColor: "",
+};
 
 export const Field = ({ value, onChange }: FieldProps<typeof controller>) => {
-  const { data, setData } = useJson<FieldValue>({ value, onChange, initialValue })
+  const { data, setData } = useJson<FieldValue>({
+    value,
+    onChange,
+    initialValue,
+  });
 
   return (
     <FieldContainer>
@@ -26,8 +30,9 @@ export const Field = ({ value, onChange }: FieldProps<typeof controller>) => {
         <TextInput
           value={data.body}
           onChange={(e) => {
-            setData({ ...data, body: e.target.value })
-          }}></TextInput>
+            setData({ ...data, body: e.target.value });
+          }}
+        />
       </div>
 
       <div>
@@ -35,8 +40,9 @@ export const Field = ({ value, onChange }: FieldProps<typeof controller>) => {
         <TextInput
           value={data.colour}
           onChange={(e) => {
-            setData({ ...data, colour: e.target.value })
-          }}></TextInput>
+            setData({ ...data, colour: e.target.value });
+          }}
+        />
       </div>
 
       <div>
@@ -44,11 +50,10 @@ export const Field = ({ value, onChange }: FieldProps<typeof controller>) => {
         <TextInput
           value={data.coatColor}
           onChange={(e) => {
-            setData({ ...data, coatColor: e.target.value })
-          }}></TextInput>
+            setData({ ...data, coatColor: e.target.value });
+          }}
+        />
       </div>
-
     </FieldContainer>
-  )
-}
-
+  );
+};

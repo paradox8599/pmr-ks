@@ -4,9 +4,9 @@ import { list } from "@keystone-6/core";
 import { allowAll } from "@keystone-6/core/access";
 import { relationship, text } from "@keystone-6/core/fields";
 
-import { createdAtField, updatedAtField } from "./fields/dates";
 import { IsRole } from "../admin/helpers/role";
 import { Role } from "../src/lib/types/auth";
+import { createdAtField, updatedAtField } from "./fields/dates";
 
 export const Client: Lists.Client = list({
   access: {

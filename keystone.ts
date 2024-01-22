@@ -29,7 +29,7 @@ export default withAuth(
         kind: "s3",
         type: "image",
         region: "auto",
-        bucketName: BUCKET.bucketName!,
+        bucketName: BUCKET.bucketName ?? "",
         accessKeyId: BUCKET.accessKeyId,
         secretAccessKey: BUCKET.secretAccessKey,
         endpoint: BUCKET.endpoint,
@@ -44,7 +44,7 @@ export default withAuth(
     db: {
       provider: DB_PROVIDER,
       url: DATABASE_URL,
-      async onConnect() {},
+      async onConnect() { },
     },
     lists,
     graphql: { path: GRAPHQL_PATH },

@@ -1,6 +1,6 @@
 import useSWR from "swr";
-import { GRAPHQL_ENDPOINT } from "../variables";
 import { Obj } from "../types/helpers";
+import { GRAPHQL_ENDPOINT } from "../variables";
 
 export async function graphql({
   query,
@@ -15,7 +15,7 @@ export async function graphql({
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      query: query.replace(/(\r\n|\n|\r|\t)/gm, " ").replace(/  +/g, " "),
+      query: query.replace(/(\r\n|\n|\r|\t)/gm, " ").replace(/ +/g, " "),
       variables,
     }),
   });

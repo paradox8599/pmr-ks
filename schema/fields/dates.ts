@@ -1,4 +1,4 @@
-import { select, timestamp } from "@keystone-6/core/fields";
+import { timestamp } from "@keystone-6/core/fields";
 import { BaseListTypeInfo } from "@keystone-6/core/types";
 
 export function createdAtField<T extends BaseListTypeInfo>() {

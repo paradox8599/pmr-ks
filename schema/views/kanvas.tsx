@@ -1,6 +1,6 @@
-import { Stage, Layer, Image as KonvaImage } from "react-konva";
-import React from "react";
 import Konva from "konva";
+import React from "react";
+import { Image as KonvaImage, Layer, Stage } from "react-konva";
 
 import { Button } from "@keystone-ui/button";
 
@@ -83,7 +83,7 @@ export default function Kanvas({
 
   React.useEffect(() => {
     redraw();
-  }, [data, redraw]);
+  }, [redraw]);
 
   return (
     <div ref={divRef}>
@@ -96,10 +96,10 @@ export default function Kanvas({
       >
         {/* Background image layer */}
         <Layer>
-          <KonvaImage image={image} width={width} height={height}></KonvaImage>
+          <KonvaImage image={image} width={width} height={height} />
         </Layer>
         {/* Circle layer */}
-        <Layer ref={layerRef}></Layer>
+        <Layer ref={layerRef} />
       </Stage>
       {/* actions */}
       <div

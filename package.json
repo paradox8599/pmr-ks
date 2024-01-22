@@ -28,6 +28,7 @@
     "swr": "^2.2.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.5.2",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
     "@types/node": "^20",

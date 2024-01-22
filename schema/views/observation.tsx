@@ -1,9 +1,9 @@
-import { type FieldProps } from "@keystone-6/core/types";
 import { type controller } from "@keystone-6/core/fields/types/json/views";
+import { type FieldProps } from "@keystone-6/core/types";
 
-import React from "react";
-import dynamic from "next/dynamic";
 import { FieldContainer, FieldLabel } from "@keystone-ui/fields";
+import dynamic from "next/dynamic";
+import React from "react";
 
 import { globalStyles as styles } from "./global.style";
 
@@ -21,7 +21,7 @@ export const Field = ({
       <div style={styles.description}>{field.description}</div>
       <div>
         <div>
-          <Kanvas value={value} onChange={onChange}></Kanvas>
+          <Kanvas value={value} onChange={onChange} />
         </div>
       </div>
     </FieldContainer>

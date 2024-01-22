@@ -12,9 +12,9 @@ import {
 } from "@keystone-6/core/fields";
 import { document } from "@keystone-6/fields-document";
 
-import { createdAtField, updatedAtField } from "./fields/dates";
 import { IsRole } from "../admin/helpers/role";
 import { Role } from "../src/lib/types/auth";
+import { createdAtField, updatedAtField } from "./fields/dates";
 
 export const cmForm: Lists.cmForm = list({
   access: {
@@ -49,8 +49,10 @@ export const cmForm: Lists.cmForm = list({
           })) as unknown as Lists.User.Item;
 
           return (
-            `[${(item.treatmentDate ?? item.createdAt!).toISOString().replace("T", " ").replace("Z", "")}]` +
-            ` ${client.name} - ${therapist.name}`
+            `[${(item.treatmentDate ?? item.createdAt)
+              ?.toISOString()
+              .replace("T", " ")
+              .replace("Z", "")}]` + ` ${client.name} - ${therapist.name}`
           );
         },
       }),

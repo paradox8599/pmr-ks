@@ -2,12 +2,13 @@ import { type Lists } from ".keystone/types";
 
 import { list } from "@keystone-6/core";
 import { allowAll } from "@keystone-6/core/access";
-import { text, password, select } from "@keystone-6/core/fields";
+import { password, select, text } from "@keystone-6/core/fields";
 
+import { IsRole } from "../admin/helpers/role";
 import { Role, RoleName } from "../src/lib/types/auth";
 import { createdAtField, updatedAtField } from "./fields/dates";
-import { IsRole } from "../admin/helpers/role";
 
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 function filterAdminOrSelf({ session }: any) {
   return (
     session?.data?.role === Role.Admin || {
@@ -41,7 +42,7 @@ export const User: Lists.User = list({
       type: "integer",
       defaultValue: Role.User,
       options: Object.keys(Role)
-        .filter((v) => isNaN(Number(v)))
+        .filter((v) => Number.isNaN(Number(v)))
         .map((key) => ({
           label: key,
           value: Role[key as RoleName],

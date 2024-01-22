@@ -5,9 +5,9 @@ import { allowAll } from "@keystone-6/core/access";
 import { json, relationship, select, virtual } from "@keystone-6/core/fields";
 import { document } from "@keystone-6/fields-document";
 
-import { createdAtField, updatedAtField } from "./fields/dates";
 import { IsRole } from "../admin/helpers/role";
 import { Role } from "../src/lib/types/auth";
+import { createdAtField, updatedAtField } from "./fields/dates";
 
 export const gsaForm: Lists.gsaForm = list({
   access: {
@@ -42,8 +42,10 @@ export const gsaForm: Lists.gsaForm = list({
           })) as unknown as Lists.User.Item;
 
           return (
-            `[${item.createdAt!.toISOString().replace("T", " ").replace("Z", "")}]` +
-            ` ${client.name} - ${therapist.name}`
+            `[${item.createdAt
+              ?.toISOString()
+              .replace("T", " ")
+              .replace("Z", "")}]` + ` ${client.name} - ${therapist.name}`
           );
         },
       }),
