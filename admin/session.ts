@@ -1,6 +1,10 @@
-import { createClient } from "redis";
-import { statelessSessions, storedSessions } from "@keystone-6/core/session";
+import {
+  statelessSessions,
+  // storedSessions,
+} from "@keystone-6/core/session";
 import { randomBytes } from "crypto";
+
+// import { createClient } from "redis";
 
 // for a stateless session, a SESSION_SECRET should always be provided
 //   especially in production (statelessSessions will throw if SESSION_SECRET is undefined)
@@ -21,28 +25,28 @@ export const statelessSession = statelessSessions({
   secure: process.env.NODE_ENV === "production",
 });
 
-// stored sessions example
-// https://github.com/keystonejs/keystone/blob/b52713b1f85ec02622dd3b5679f31ea9e2c0186c/examples/redis-session-store/keystone.ts
-export const redis = createClient({
-  url: process.env.REDIS_URL,
-  username: process.env.REDIS_USERNAME,
-  password: process.env.REDIS_PASSWORD,
-});
-
-export const storedSession = storedSessions({
-  store: ({ maxAge }) => ({
-    async get(key) {
-      let result = await redis.get(key);
-      if (typeof result === "string") {
-        return JSON.parse(result);
-      }
-    },
-    async set(key, value) {
-      await redis.setEx(key, maxAge, JSON.stringify(value));
-    },
-    async delete(key) {
-      await redis.del(key);
-    },
-  }),
-  secret: sessionSecret!,
-});
+// // stored sessions example
+// // https://github.com/keystonejs/keystone/blob/b52713b1f85ec02622dd3b5679f31ea9e2c0186c/examples/redis-session-store/keystone.ts
+// export const redis = createClient({
+//   url: process.env.REDIS_URL,
+//   username: process.env.REDIS_USERNAME,
+//   password: process.env.REDIS_PASSWORD,
+// });
+//
+// export const storedSession = storedSessions({
+//   store: ({ maxAge }) => ({
+//     async get(key) {
+//       let result = await redis.get(key);
+//       if (typeof result === "string") {
+//         return JSON.parse(result);
+//       }
+//     },
+//     async set(key, value) {
+//       await redis.setEx(key, maxAge, JSON.stringify(value));
+//     },
+//     async delete(key) {
+//       await redis.del(key);
+//     },
+//   }),
+//   secret: sessionSecret!,
+// });
