@@ -5,7 +5,6 @@ import { config } from "@keystone-6/core";
 import { withAuth } from "./admin/auth";
 import { lists } from "./schema/_lists";
 import { statelessSession } from "./admin/session";
-// import { redis, storedSession } from "./admin/session";
 
 import {
   BUCKET,
@@ -45,9 +44,7 @@ export default withAuth(
     db: {
       provider: DB_PROVIDER,
       url: DATABASE_URL,
-      async onConnect() {
-        // await redis.connect();
-      },
+      async onConnect() {},
     },
     lists,
     graphql: { path: GRAPHQL_PATH },

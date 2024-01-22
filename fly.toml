@@ -32,10 +32,6 @@ NEXT_PUBLIC_SERVER_URL = "https://pmrks.fly.dev"
 # STORE_CUSTOM_URL = ""
 # STORE_ENDPOINT = ""
 
-# REDIS_URL=""
-# REDIS_USERNAME=""
-# REDIS_PASSWORD=""
-
 [http_service]
 internal_port = 3000
 force_https = true
