@@ -13,9 +13,27 @@ import {
 import { document } from "@keystone-6/fields-document";
 
 import { createdAtField, updatedAtField } from "./fields/dates";
+import { IsRole } from "../admin/helpers/role";
+import { Role } from "../src/lib/types/auth";
 
 export const cmForm: Lists.cmForm = list({
-  access: allowAll,
+  access: {
+    operation: {
+      create: IsRole(Role.Admin),
+      query: allowAll,
+      update: allowAll,
+      delete: IsRole(Role.Admin),
+    },
+    filter: {
+      query: allowAll,
+      update: ({ session }) => {
+        return (
+          IsRole(Role.Admin)(session) || { therapist: { id: session.itemId } }
+        );
+      },
+    },
+  },
+  ui: { hideDelete: ({ session }) => !IsRole(Role.Admin)(session) },
   fields: {
     label: virtual({
       field: graphql.field({

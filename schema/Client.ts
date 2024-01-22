@@ -5,9 +5,25 @@ import { allowAll } from "@keystone-6/core/access";
 import { relationship, text } from "@keystone-6/core/fields";
 
 import { createdAtField, updatedAtField } from "./fields/dates";
+import { IsRole } from "../admin/helpers/role";
+import { Role } from "../src/lib/types/auth";
 
 export const Client: Lists.Client = list({
-  access: allowAll,
+  access: {
+    operation: {
+      create: allowAll,
+      query: allowAll,
+      update: allowAll,
+      delete: IsRole(Role.Admin),
+    },
+    filter: {
+      query: allowAll,
+      update: ({ session }) => {
+        return IsRole(Role.Admin)(session);
+      },
+    },
+  },
+  ui: { hideDelete: ({ session }) => !IsRole(Role.Admin)(session) },
   fields: {
     name: text({ validation: { isRequired: true } }),
     phone: text({ validation: { isRequired: true }, isIndexed: "unique" }),
@@ -20,23 +36,6 @@ export const Client: Lists.Client = list({
         inlineCreate: { fields: ["description", "image"] },
         inlineConnect: true,
       },
-      // hooks: {
-      //   afterOperation: async ({ operation, item, context, inputData }) => {
-      //     console.log(inputData);
-      //     async function fetchImages(id: string) {
-      //       return await context.query.Client.findOne({
-      //         where: { id },
-      //         query: "consentForm { id }",
-      //       });
-      //     }
-      //
-      //     if (operation === "create") return;
-      //     if (operation === "update") {
-      //       // const images = await fetchImages(item.id);
-      //       // console.log(images);
-      //     }
-      //   },
-      // },
     }),
     createdAt: createdAtField(),
     updatedAt: updatedAtField(),

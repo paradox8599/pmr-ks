@@ -6,9 +6,33 @@ import { text, password, select } from "@keystone-6/core/fields";
 
 import { Role, RoleName } from "../src/lib/types/auth";
 import { createdAtField, updatedAtField } from "./fields/dates";
+import { IsRole } from "../admin/helpers/role";
+
+function filterAdminOrSelf({ session }: any) {
+  return (
+    session?.data?.role === Role.Admin || {
+      id: { equals: session?.itemId },
+    }
+  );
+}
 
 export const User: Lists.User = list({
-  access: allowAll,
+  access: {
+    operation: {
+      create: IsRole(Role.Admin),
+      query: allowAll,
+      update: allowAll,
+      delete: IsRole(Role.Admin),
+    },
+    filter: {
+      query: filterAdminOrSelf,
+      update: filterAdminOrSelf,
+    },
+  },
+  ui: {
+    hideCreate: ({ session }) => !IsRole(Role.Admin)(session),
+    hideDelete: ({ session }) => !IsRole(Role.Admin)(session),
+  },
   fields: {
     name: text({}),
     email: text({ validation: { isRequired: true }, isIndexed: "unique" }),

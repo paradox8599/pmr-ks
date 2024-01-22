@@ -7,6 +7,7 @@ import { image, text, virtual } from "@keystone-6/core/fields";
 import { createdAtField, updatedAtField } from "./fields/dates";
 import { BUCKET } from "../src/lib/variables";
 
+// TODO: thumbnail
 export const Image: Lists.Image = list({
   access: allowAll,
   fields: {
