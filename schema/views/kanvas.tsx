@@ -68,16 +68,17 @@ export default function Kanvas({
   // redraw circles when data changes
   const redraw = React.useCallback(() => {
     layerRef.current?.destroyChildren();
-    for (const point of data) {
-      const circle = new Konva.Circle({
-        x: point.x * width,
-        y: point.y * height,
-        radius: 15,
-        stroke: "cyan",
-        strokeWidth: 3,
-      });
-      layerRef.current?.add(circle);
-    }
+    const circles = data.map(
+      (point) =>
+        new Konva.Circle({
+          x: point.x * width,
+          y: point.y * height,
+          radius: 15,
+          stroke: "cyan",
+          strokeWidth: 3,
+        }),
+    );
+    layerRef.current?.add(...circles);
   }, [data, height, width]);
 
   React.useEffect(() => {
