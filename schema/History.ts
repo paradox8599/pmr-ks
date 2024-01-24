@@ -14,13 +14,13 @@ export const History: Lists.History = list({
       create: denyAll,
       query: IsRole(Role.Admin),
       update: denyAll,
-      delete: denyAll,
+      delete: IsRole(Role.Admin),
     },
     filter: { query: IsRole(Role.Admin) },
   },
   ui: {
     itemView: { defaultFieldMode: "read" },
-    hideDelete: () => true,
+    hideDelete: IsNotRole(Role.Admin),
     hideCreate: () => true,
     isHidden: IsNotRole(Role.Admin),
     listView: {
