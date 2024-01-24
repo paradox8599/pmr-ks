@@ -4,26 +4,29 @@ import { list } from "@keystone-6/core";
 import { allowAll } from "@keystone-6/core/access";
 import { relationship, text } from "@keystone-6/core/fields";
 
-import { IsRole } from "../admin/helpers/role";
+import { IsNotRole, IsRole } from "../admin/helpers/role";
 import { Role } from "../src/lib/types/auth";
 import { createdAtField, updatedAtField } from "./fields/dates";
+import { afterOperation } from "./History";
 
 export const Client: Lists.Client = list({
   access: {
     operation: {
       create: allowAll,
       query: allowAll,
-      update: allowAll,
+      update: IsRole(Role.Admin),
       delete: IsRole(Role.Admin),
     },
     filter: {
       query: allowAll,
-      update: ({ session }) => {
-        return IsRole(Role.Admin)(session);
-      },
+      update: IsRole(Role.Admin),
+      delete: IsRole(Role.Admin),
     },
   },
-  ui: { hideDelete: ({ session }) => !IsRole(Role.Admin)(session) },
+  ui: {
+    hideDelete: IsNotRole(Role.Admin),
+  },
+  hooks: { afterOperation },
   fields: {
     name: text({ validation: { isRequired: true } }),
     phone: text({ validation: { isRequired: true }, isIndexed: "unique" }),

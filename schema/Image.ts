@@ -6,10 +6,12 @@ import { image, text, virtual } from "@keystone-6/core/fields";
 
 import { BUCKET } from "../src/lib/variables";
 import { createdAtField, updatedAtField } from "./fields/dates";
+import { afterOperation } from "./History";
 
 // TODO: thumbnail
 export const Image: Lists.Image = list({
   access: allowAll,
+  hooks: { afterOperation },
   fields: {
     label: virtual({
       field: graphql.field({

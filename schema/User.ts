@@ -4,7 +4,7 @@ import { list } from "@keystone-6/core";
 import { allowAll } from "@keystone-6/core/access";
 import { password, select, text } from "@keystone-6/core/fields";
 
-import { IsRole } from "../admin/helpers/role";
+import { IsNotRole, IsRole } from "../admin/helpers/role";
 import { Role, RoleName } from "../src/lib/types/auth";
 import { createdAtField, updatedAtField } from "./fields/dates";
 
@@ -23,16 +23,19 @@ export const User: Lists.User = list({
       create: IsRole(Role.Admin),
       query: allowAll,
       update: allowAll,
-      delete: IsRole(Role.Admin),
+      delete: allowAll,
     },
     filter: {
-      query: filterAdminOrSelf,
       update: filterAdminOrSelf,
+      delete: ({ session }) =>
+        IsRole(Role.Admin)({ session }) && {
+          id: { not: { equals: session.itemId } },
+        },
     },
   },
   ui: {
-    hideCreate: ({ session }) => !IsRole(Role.Admin)(session),
-    hideDelete: ({ session }) => !IsRole(Role.Admin)(session),
+    hideCreate: IsNotRole(Role.Admin),
+    hideDelete: IsNotRole(Role.Admin),
   },
   fields: {
     name: text({}),

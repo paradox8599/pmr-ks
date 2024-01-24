@@ -5,28 +5,28 @@ import { allowAll } from "@keystone-6/core/access";
 import { json, relationship, select, virtual } from "@keystone-6/core/fields";
 import { document } from "@keystone-6/fields-document";
 
-import { IsRole } from "../admin/helpers/role";
+import { IsNotRole, IsRole } from "../admin/helpers/role";
 import { Role } from "../src/lib/types/auth";
 import { createdAtField, updatedAtField } from "./fields/dates";
+import { afterOperation } from "./History";
 
 export const gsaForm: Lists.gsaForm = list({
   access: {
     operation: {
-      create: IsRole(Role.Admin),
+      create: allowAll,
       query: allowAll,
       update: allowAll,
       delete: IsRole(Role.Admin),
     },
     filter: {
-      query: allowAll,
-      update: ({ session }) => {
-        return (
-          IsRole(Role.Admin)(session) || { therapist: { id: session.itemId } }
-        );
-      },
+      update: ({ session }) =>
+        IsRole(Role.Admin)({ session }) || {
+          therapist: { id: { equals: session.itemId } },
+        },
     },
   },
-  ui: { hideDelete: ({ session }) => !IsRole(Role.Admin)(session) },
+  ui: { hideDelete: IsNotRole(Role.Admin) },
+  hooks: { afterOperation },
   fields: {
     label: virtual({
       field: graphql.field({
