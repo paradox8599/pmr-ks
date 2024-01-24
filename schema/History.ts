@@ -1,7 +1,7 @@
 import { type Lists } from ".keystone/types";
 
 import { graphql, list } from "@keystone-6/core";
-import { allowAll, denyAll } from "@keystone-6/core/access";
+import { denyAll } from "@keystone-6/core/access";
 import { json, relationship, text, virtual } from "@keystone-6/core/fields";
 
 import { IsNotRole, IsRole } from "../admin/helpers/role";
@@ -19,6 +19,7 @@ export const History: Lists.History = list({
     filter: { query: IsRole(Role.Admin) },
   },
   ui: {
+    itemView: { defaultFieldMode: "read" },
     hideDelete: () => true,
     hideCreate: () => true,
     isHidden: IsNotRole(Role.Admin),
@@ -45,7 +46,7 @@ export const History: Lists.History = list({
         },
       }),
     }),
-    operator: relationship({ ref: "User" }),
+    operator: relationship({ ref: "User", ui: { hideCreate: true } }),
     collection: text({ validation: { isRequired: true } }),
     operation: text({}),
     inputData: json({}),
@@ -66,12 +67,6 @@ export const afterOperation = async ({
   context,
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 }: any) => {
-  console.log({
-    item,
-    originalItem,
-    inputData,
-    resolvedData,
-  });
   await context.sudo().query.History.createOne({
     data: {
       operator: { connect: { id: context.session.itemId } },
