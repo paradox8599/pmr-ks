@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "preinstall": "only-allow npm",
-    "postinstall": "keystone postinstall --fix && npx --yes husky install",
+    "postinstall": "patch-package && keystone postinstall --fix && npx --yes husky install",
     "dev:nx": "next dev --port 4000",
     "dev:ks": "keystone dev",
     "dev": "npm-run-all -l -p dev:*",
@@ -41,6 +41,7 @@
     "husky": "^8.0.3",
     "npm-run-all": "^4.1.5",
     "only-allow": "^1.2.1",
+    "patch-package": "^8.0.0",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"

@@ -17,6 +17,7 @@ FROM deps as build
 COPY . .
 
 RUN npm i @esbuild/linux-x64 \
+    && npx patch-package \
     && npx --yes keystone postinstall --fix \
     && npm run build:ks 
 

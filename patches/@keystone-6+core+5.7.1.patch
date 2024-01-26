@@ -1,0 +1,106 @@
+diff --git a/node_modules/@keystone-6/core/dist/PageContainer-b75c1863.esm.js b/node_modules/@keystone-6/core/dist/PageContainer-b75c1863.esm.js
+index 1f553e9..9debca5 100644
+--- a/node_modules/@keystone-6/core/dist/PageContainer-b75c1863.esm.js
++++ b/node_modules/@keystone-6/core/dist/PageContainer-b75c1863.esm.js
+@@ -327,7 +327,6 @@ const Sidebar = ({
+ const Content = props => {
+   const {
+     colors,
+-    spacing
+   } = useTheme();
+   return jsx("main", _extends({
+     css: {
+@@ -335,8 +334,8 @@ const Content = props => {
+       boxSizing: 'border-box',
+       minWidth: 0,
+       // resolves collapsing issues in children
+-      paddingLeft: spacing.xlarge,
+-      paddingRight: spacing.xlarge,
++      paddingLeft: '0',
++      paddingRight: '0',
+       overflowY: 'auto',
+       WebkitOverflowScrolling: 'touch',
+       position: 'relative'
+diff --git a/node_modules/@keystone-6/core/dist/PageContainer-d1d3f4de.cjs.dev.js b/node_modules/@keystone-6/core/dist/PageContainer-d1d3f4de.cjs.dev.js
+index a496c07..ae5ad4e 100644
+--- a/node_modules/@keystone-6/core/dist/PageContainer-d1d3f4de.cjs.dev.js
++++ b/node_modules/@keystone-6/core/dist/PageContainer-d1d3f4de.cjs.dev.js
+@@ -341,8 +341,8 @@ const Content = props => {
+       boxSizing: 'border-box',
+       minWidth: 0,
+       // resolves collapsing issues in children
+-      paddingLeft: spacing.xlarge,
+-      paddingRight: spacing.xlarge,
++      paddingLeft: '0',
++      paddingRight: '0',
+       overflowY: 'auto',
+       WebkitOverflowScrolling: 'touch',
+       position: 'relative'
+diff --git a/node_modules/@keystone-6/core/dist/PageContainer-e445de49.cjs.prod.js b/node_modules/@keystone-6/core/dist/PageContainer-e445de49.cjs.prod.js
+index 4a290cb..261880f 100644
+--- a/node_modules/@keystone-6/core/dist/PageContainer-e445de49.cjs.prod.js
++++ b/node_modules/@keystone-6/core/dist/PageContainer-e445de49.cjs.prod.js
+@@ -292,8 +292,8 @@ const Content = props => {
+       boxSizing: 'border-box',
+       minWidth: 0,
+       // resolves collapsing issues in children
+-      paddingLeft: spacing.xlarge,
+-      paddingRight: spacing.xlarge,
++      paddingLeft: '0',
++      paddingRight: '0',
+       overflowY: 'auto',
+       WebkitOverflowScrolling: 'touch',
+       position: 'relative'
+diff --git a/node_modules/@keystone-6/core/dist/common-3da5ad91.cjs.prod.js b/node_modules/@keystone-6/core/dist/common-3da5ad91.cjs.prod.js
+index 5619cba..910c8e8 100644
+--- a/node_modules/@keystone-6/core/dist/common-3da5ad91.cjs.prod.js
++++ b/node_modules/@keystone-6/core/dist/common-3da5ad91.cjs.prod.js
+@@ -103,13 +103,14 @@ function BaseToolbar(props) {
+   } = core.useTheme();
+   return core.jsx("div", {
+     css: {
++      transform:"translateY(-56px)",
+       background: colors.background,
+       borderTop: `1px solid ${colors.border}`,
+       bottom: 0,
+       display: 'flex',
+       justifyContent: 'space-between',
+       marginTop: spacing.xlarge,
+-      paddingBottom: spacing.xlarge,
++      paddingBottom: '72px',
+       paddingTop: spacing.xlarge,
+       position: 'sticky',
+       zIndex: 20
+diff --git a/node_modules/@keystone-6/core/dist/common-512e26f5.cjs.dev.js b/node_modules/@keystone-6/core/dist/common-512e26f5.cjs.dev.js
+index 5c54f98..9928f86 100644
+--- a/node_modules/@keystone-6/core/dist/common-512e26f5.cjs.dev.js
++++ b/node_modules/@keystone-6/core/dist/common-512e26f5.cjs.dev.js
+@@ -103,13 +103,14 @@ function BaseToolbar(props) {
+   } = core.useTheme();
+   return core.jsx("div", {
+     css: {
++      transform:"translateY(-56px)",
+       background: colors.background,
+       borderTop: `1px solid ${colors.border}`,
+       bottom: 0,
+       display: 'flex',
+       justifyContent: 'space-between',
+       marginTop: spacing.xlarge,
+-      paddingBottom: spacing.xlarge,
++      paddingBottom: '72px',
+       paddingTop: spacing.xlarge,
+       position: 'sticky',
+       zIndex: 20
+diff --git a/node_modules/@keystone-6/core/dist/common-e09bab7f.esm.js b/node_modules/@keystone-6/core/dist/common-e09bab7f.esm.js
+index ce09880..31d2bb5 100644
+--- a/node_modules/@keystone-6/core/dist/common-e09bab7f.esm.js
++++ b/node_modules/@keystone-6/core/dist/common-e09bab7f.esm.js
+@@ -107,7 +107,7 @@ function BaseToolbar(props) {
+       display: 'flex',
+       justifyContent: 'space-between',
+       marginTop: spacing.xlarge,
+-      paddingBottom: spacing.xlarge,
++      paddingBottom: '72px',
+       paddingTop: spacing.xlarge,
+       position: 'sticky',
+       zIndex: 20

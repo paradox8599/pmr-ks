@@ -19,6 +19,9 @@ export default withAuth(
   config({
     server: {
       port: KS_PORT,
+      options: {
+        host: "0.0.0.0",
+      },
     },
     ui: {
       isAccessAllowed: (ctx) =>
