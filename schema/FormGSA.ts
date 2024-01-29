@@ -2,8 +2,13 @@ import { type Lists } from ".keystone/types";
 
 import { graphql, list } from "@keystone-6/core";
 import { allowAll } from "@keystone-6/core/access";
-import { json, relationship, select, virtual } from "@keystone-6/core/fields";
-import { document } from "@keystone-6/fields-document";
+import {
+  json,
+  relationship,
+  select,
+  text,
+  virtual,
+} from "@keystone-6/core/fields";
 
 import { IsNotRole, IsRole } from "../admin/helpers/role";
 import { Role } from "../src/lib/types/auth";
@@ -61,9 +66,8 @@ export const gsaForm: Lists.gsaForm = list({
       many: false,
       ui: { itemView: { fieldPosition: "sidebar" } },
     }),
-    main: document({
-      ui: { description: "Main Complaint & History" },
-      formatting: true,
+    main: text({
+      ui: { description: "Main Complaint & History", displayMode: "textarea" },
     }),
     observation: json({
       ui: {
@@ -79,13 +83,14 @@ export const gsaForm: Lists.gsaForm = list({
         views: "./schema/views/assessment-checkboxes",
       },
     }),
-    assessmentReuslts: document({
-      ui: { description: "Assessment Conducted & Results" },
-      formatting: true,
+    assessmentReuslts: text({
+      ui: {
+        description: "Assessment Conducted & Results",
+        displayMode: "textarea",
+      },
     }),
-    details: document({
-      ui: { description: "Treatment Details" },
-      formatting: true,
+    details: text({
+      ui: { description: "Treatment Details", displayMode: "textarea" },
     }),
     pressure: select({
       options: [
@@ -94,16 +99,15 @@ export const gsaForm: Lists.gsaForm = list({
         { label: "Hard", value: "hard" },
       ],
     }),
-    other: document({
-      ui: { description: "Other Advises" },
-      formatting: true,
+    other: text({
+      ui: { description: "Other Advises", displayMode: "textarea" },
     }),
-    risks: document({
+    risks: text({
       ui: {
         description:
           "Possible Risks and Complications - advice to Clients given",
+        displayMode: "textarea",
       },
-      formatting: true,
     }),
     createdAt: createdAtField(),
     updatedAt: updatedAtField(),

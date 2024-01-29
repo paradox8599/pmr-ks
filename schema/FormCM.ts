@@ -10,7 +10,6 @@ import {
   timestamp,
   virtual,
 } from "@keystone-6/core/fields";
-import { document } from "@keystone-6/fields-document";
 
 import { IsNotRole, IsRole } from "../admin/helpers/role";
 import { Role } from "../src/lib/types/auth";
@@ -72,13 +71,13 @@ export const cmForm: Lists.cmForm = list({
       ui: { itemView: { fieldPosition: "sidebar" } },
     }),
     pregnant: checkbox({}),
-    changes: document({ formatting: true }),
+    changes: text({ ui: { displayMode: "textarea" } }),
     tongue: json({ ui: { views: "./schema/views/tongue" } }),
     pulse: json({ ui: { views: "./schema/views/pulse" } }),
     baGang: json({ ui: { views: "./schema/views/ba-gang" } }),
     zangFu: text({}),
     diagnosis: text({}),
-    t: document({ formatting: true }),
+    t: text({ ui: { displayMode: "textarea" } }),
     createdAt: createdAtField(),
     updatedAt: updatedAtField(),
   },

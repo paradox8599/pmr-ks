@@ -89,10 +89,10 @@ export default function Kanvas({
     <div ref={divRef}>
       <Stage
         ref={stageRef}
-        onTap={addPointOnClick}
-        onClick={addPointOnClick}
         height={height}
         width={width}
+        onTap={addPointOnClick}
+        onClick={addPointOnClick}
       >
         {/* Background image layer */}
         <Layer>
