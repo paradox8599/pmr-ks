@@ -1,7 +1,6 @@
 export enum Role {
   Admin = 1 << 0,
   User = 1 << 1,
-  All = ~(~0 << 8),
 }
 
 export type RoleName = keyof typeof Role;

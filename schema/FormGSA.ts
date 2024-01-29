@@ -61,12 +61,7 @@ export const gsaForm: Lists.gsaForm = list({
       many: false,
       ui: { itemView: { fieldPosition: "sidebar" } },
       hooks: {
-        validateInput: ({
-          resolvedData,
-          operation,
-          item,
-          addValidationError,
-        }) => {
+        validateInput: ({ resolvedData, operation, addValidationError }) => {
           switch (operation) {
             case "create":
               if (!resolvedData.client?.connect) {
@@ -87,12 +82,7 @@ export const gsaForm: Lists.gsaForm = list({
       many: false,
       ui: { itemView: { fieldPosition: "sidebar" } },
       hooks: {
-        validateInput: ({
-          resolvedData,
-          operation,
-          item,
-          addValidationError,
-        }) => {
+        validateInput: ({ resolvedData, operation, addValidationError }) => {
           switch (operation) {
             case "create":
               if (!resolvedData.therapist?.connect) {
@@ -154,6 +144,7 @@ export const gsaForm: Lists.gsaForm = list({
         displayMode: "textarea",
       },
     }),
+    appendix: relationship({ ref: "Appendix", many: true }),
     createdAt: createdAtField(),
     updatedAt: updatedAtField(),
   },

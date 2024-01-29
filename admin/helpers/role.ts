@@ -7,6 +7,6 @@ export function IsRole(role: Role): (args: any) => boolean {
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export function IsNotRole(role: Role): (args: any) => boolean {
-  const restRole = Role.All ^ role;
+  const restRole = ~(~0 << 8) ^ role;
   return ({ session }) => ((session?.data.role ?? 0) & restRole) > 0;
 }

@@ -64,7 +64,6 @@ export const cmForm: Lists.cmForm = list({
         validateInput: ({
           resolvedData,
           operation,
-          item,
           addValidationError,
         }) => {
           switch (operation) {
@@ -90,7 +89,6 @@ export const cmForm: Lists.cmForm = list({
         validateInput: ({
           resolvedData,
           operation,
-          item,
           addValidationError,
         }) => {
           switch (operation) {
@@ -121,6 +119,7 @@ export const cmForm: Lists.cmForm = list({
     zangFu: text({}),
     diagnosis: text({}),
     t: text({ ui: { displayMode: "textarea" } }),
+    appendix: relationship({ ref: "Appendix", many: true }),
     createdAt: createdAtField(),
     updatedAt: updatedAtField(),
   },
