@@ -60,15 +60,58 @@ export const cmForm: Lists.cmForm = list({
       ref: "Client",
       many: false,
       ui: { itemView: { fieldPosition: "sidebar" } },
+      hooks: {
+        validateInput: ({
+          resolvedData,
+          operation,
+          item,
+          addValidationError,
+        }) => {
+          switch (operation) {
+            case "create":
+              if (!resolvedData.client?.connect) {
+                addValidationError("Client is required");
+              }
+              break;
+            case "update":
+              if (resolvedData.client?.disconnect) {
+                addValidationError("Client is required");
+              }
+              break;
+          }
+        },
+      },
     }),
     therapist: relationship({
       ref: "User",
       many: false,
       ui: { itemView: { fieldPosition: "sidebar" } },
+      hooks: {
+        validateInput: ({
+          resolvedData,
+          operation,
+          item,
+          addValidationError,
+        }) => {
+          switch (operation) {
+            case "create":
+              if (!resolvedData.therapist?.connect) {
+                addValidationError("Therapist is required");
+              }
+              break;
+            case "update":
+              if (resolvedData.therapist?.disconnect) {
+                addValidationError("Therapist is required");
+              }
+              break;
+          }
+        },
+      },
     }),
     treatmentDate: timestamp({
       defaultValue: { kind: "now" },
       ui: { itemView: { fieldPosition: "sidebar" } },
+      validation: { isRequired: true },
     }),
     pregnant: checkbox({}),
     changes: text({ ui: { displayMode: "textarea" } }),
