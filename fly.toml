@@ -1,11 +1,8 @@
-# fly.toml app configuration file generated for pmrks on 2023-12-18T14:22:01+11:00
-#
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
 
-app = "pmrks"
+app = "zcm"
 primary_region = "syd"
-swap_size_mb = 1024
+swap_size_mb = 256
 
 [build]
 dockerfile = "Dockerfile.admin"
@@ -18,10 +15,10 @@ NODE_ENV = "production"
 
 KS_PORT = "3000"
 
-STORE_BUCKET = "pmrks"
+STORE_BUCKET = "zcm"
 
 NEXT_PUBLIC_GRAPHQL_PATH = "/api/graphql"
-NEXT_PUBLIC_SERVER_URL = "https://pmrks.fly.dev"
+NEXT_PUBLIC_SERVER_URL = "https://zcm.fly.dev"
 
 # secrets
 

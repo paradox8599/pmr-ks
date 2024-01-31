@@ -15,17 +15,14 @@
 create `.env` file for development:
 
 ```sh
-# development | production
-NODE_ENV = "development"
-
 KS_PORT=3000
 
 # sqlite | mysql | postgresql
 DB_PROVIDER="postgresql"
-DATABASE_URL="postgresql://pmrks:pmrks@localhost:5432/pmrks"
+DATABASE_URL="postgresql://zcm:zcm@localhost:5432/zcm"
 
 # Cloudflare R2 / AWS S3
-STORE_BUCKET="pmrks"
+STORE_BUCKET="zcm"
 STORE_ENDPOINT=""
 STORE_CUSTOM_URL=""
 STORE_ACCESS_KEY_ID=""
@@ -82,7 +79,7 @@ Before build, `npm run postinstall` is required for generating prisma db config.
 - Create app if not exists: `fly app create <app name>`
 - Change build args & env in `fly.toml`
 - Set secrets one by one: `fly secrets set <KEY>=<VALUE>`
-- Set secrets by import: `fly secrets import`, then enter or paste secret pairs
+- Set secrets by import: `fly secrets import`, or use `.env` with command `fly secrets import <<< $(cat .env | grep -E '^[^#w]')`
 - Deploy `fly deploy`
 
 #### Self Hosting

@@ -26,7 +26,30 @@ export const Client: Lists.Client = list({
   ui: {
     hideDelete: IsNotRole(Role.Admin),
   },
-  hooks: { afterOperation },
+  hooks: {
+    afterOperation,
+    validateDelete: async ({
+      addValidationError,
+      item,
+      operation,
+      context,
+    }) => {
+      if (operation === "delete") {
+        let count = await context.sudo().query.gsaForm.count({
+          where: { client: { id: { equals: item.id } } },
+        });
+        if (count > 0) {
+          addValidationError("Cannot delete client with GSA forms");
+        }
+        count += await context.sudo().query.cmForm.count({
+          where: { client: { id: { equals: item.id } } },
+        });
+        if (count > 0) {
+          addValidationError("Cannot delete client with CM forms");
+        }
+      }
+    },
+  },
   fields: {
     name: text({ validation: { isRequired: true } }),
     phone: text({ validation: { isRequired: true }, isIndexed: "unique" }),

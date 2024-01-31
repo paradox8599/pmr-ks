@@ -1,3 +1,3 @@
 export const components = {
-  Logo: () => <h1>Admin</h1>,
+  Logo: () => <h1>Zen Chinese Medicine</h1>,
 };

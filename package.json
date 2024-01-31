@@ -13,7 +13,7 @@
     "build:ks": "keystone build",
     "start:ks": "keystone start",
     "dbpush": "keystone prisma db push --accept-data-loss",
-    "secpush": "fly secrets import <<< $(cat .env | grep -E '^[^#w]')"
+    "secpush": "cat .env | grep -E '^[^#\\w]' | xargs fly secrets set"
   },
   "dependencies": {
     "@keystone-6/auth": "^7.0.2",

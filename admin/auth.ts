@@ -36,7 +36,7 @@ const { withAuth } = createAuth({
     //   you are asking the Keystone AdminUI to create a new user
     //   providing inputs for these fields
     skipKeystoneWelcome: true,
-    fields: ["name"],
+    fields: ["name", "email", "password"],
     itemData: {
       role: Role.Admin,
       email: "admin@me.com",

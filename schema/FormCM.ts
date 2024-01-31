@@ -61,11 +61,7 @@ export const cmForm: Lists.cmForm = list({
       many: false,
       ui: { itemView: { fieldPosition: "sidebar" } },
       hooks: {
-        validateInput: ({
-          resolvedData,
-          operation,
-          addValidationError,
-        }) => {
+        validateInput: ({ resolvedData, operation, addValidationError }) => {
           switch (operation) {
             case "create":
               if (!resolvedData.client?.connect) {
@@ -86,11 +82,7 @@ export const cmForm: Lists.cmForm = list({
       many: false,
       ui: { itemView: { fieldPosition: "sidebar" } },
       hooks: {
-        validateInput: ({
-          resolvedData,
-          operation,
-          addValidationError,
-        }) => {
+        validateInput: ({ resolvedData, operation, addValidationError }) => {
           switch (operation) {
             case "create":
               if (!resolvedData.therapist?.connect) {
@@ -116,8 +108,8 @@ export const cmForm: Lists.cmForm = list({
     tongue: json({ ui: { views: "./schema/views/tongue" } }),
     pulse: json({ ui: { views: "./schema/views/pulse" } }),
     baGang: json({ ui: { views: "./schema/views/ba-gang" } }),
-    zangFu: text({}),
-    diagnosis: text({}),
+    zangFu: text({ ui: { displayMode: "textarea" } }),
+    diagnosis: text({ ui: { displayMode: "textarea" } }),
     t: text({ ui: { displayMode: "textarea" } }),
     appendix: relationship({ ref: "Appendix", many: true }),
     createdAt: createdAtField(),

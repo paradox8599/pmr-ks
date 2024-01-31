@@ -4,9 +4,9 @@ services:
     ports:
       - 5435:5432
     environment:
-      POSTGRES_DB: pmrks
-      POSTGRES_USER: pmrks
-      POSTGRES_PASSWORD: pmrks
+      POSTGRES_DB: zcm
+      POSTGRES_USER: zcm
+      POSTGRES_PASSWORD: zcm
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - ./.keystone/postgres:/var/lib/postgresql/data

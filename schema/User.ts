@@ -37,9 +37,36 @@ export const User: Lists.User = list({
     hideCreate: IsNotRole(Role.Admin),
     hideDelete: IsNotRole(Role.Admin),
   },
+  hooks: {
+    validateDelete: async ({
+      addValidationError,
+      item,
+      operation,
+      context,
+    }) => {
+      if (operation === "delete") {
+        let count = await context.sudo().query.gsaForm.count({
+          where: { therapist: { id: { equals: item.id } } },
+        });
+        if (count > 0) {
+          addValidationError("Cannot delete user with GSA forms");
+        }
+        count += await context.sudo().query.cmForm.count({
+          where: { therapist: { id: { equals: item.id } } },
+        });
+        if (count > 0) {
+          addValidationError("Cannot delete user with CM forms");
+        }
+      }
+    },
+  },
   fields: {
     name: text({}),
-    email: text({ validation: { isRequired: true }, isIndexed: "unique" }),
+    email: text({
+      validation: { isRequired: true },
+      isIndexed: "unique",
+      ui: { itemView: { fieldMode: "read" } },
+    }),
     password: password({ validation: { isRequired: true } }),
     role: select({
       type: "integer",
