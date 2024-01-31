@@ -2,6 +2,7 @@ FROM node:18-alpine as base
 
 ARG DB_PROVIDER="sqlite"
 ENV DB_PROVIDER=${DB_PROVIDER}
+ENV NODE_ENV=production
 
 WORKDIR /app
 
@@ -21,4 +22,4 @@ RUN npm i @esbuild/linux-x64 \
     && npx --yes keystone postinstall --fix \
     && npm run build:ks 
 
-CMD NODE_ENV=production npm run start:ks
+CMD ["npm", "run", "start:ks"]
