@@ -39,8 +39,8 @@ const { withAuth } = createAuth({
     fields: ["name", "email", "password"],
     itemData: {
       role: Role.Admin,
-      email: "admin@me.com",
-      password: "admin@me.com",
+      // email: "admin@me.com",
+      // password: "admin@me.com",
     },
   },
 });
