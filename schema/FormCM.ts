@@ -31,7 +31,18 @@ export const cmForm: Lists.cmForm = list({
         },
     },
   },
-  ui: { hideDelete: IsNotRole(Role.Admin) },
+  ui: {
+    hideDelete: IsNotRole(Role.Admin),
+    listView: {
+      initialColumns: [
+        "label",
+        "client",
+        "therapist",
+        "createdAt",
+        "updatedAt",
+      ],
+    },
+  },
   hooks: { afterOperation },
   fields: {
     label: virtual({

@@ -30,7 +30,18 @@ export const gsaForm: Lists.gsaForm = list({
         },
     },
   },
-  ui: { hideDelete: IsNotRole(Role.Admin) },
+  ui: {
+    hideDelete: IsNotRole(Role.Admin),
+    listView: {
+      initialColumns: [
+        "label",
+        "client",
+        "therapist",
+        "createdAt",
+        "updatedAt",
+      ],
+    },
+  },
   hooks: { afterOperation },
   fields: {
     label: virtual({
