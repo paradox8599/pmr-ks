@@ -25,6 +25,7 @@ export const Client: Lists.Client = list({
   },
   ui: {
     hideDelete: IsNotRole(Role.Admin),
+    listView: { initialColumns: ["name", "phone"] },
   },
   hooks: {
     afterOperation,
