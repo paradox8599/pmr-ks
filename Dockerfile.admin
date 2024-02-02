@@ -3,6 +3,9 @@ FROM node:18-alpine as base
 ARG DB_PROVIDER="sqlite"
 ENV DB_PROVIDER=${DB_PROVIDER}
 
+ENV AWS_DEFAULT_REGION=auto
+ENV AWS_DEFAULT_OUTPUT=json
+
 WORKDIR /app
 
 FROM base as deps
@@ -21,6 +24,8 @@ RUN npm i @esbuild/linux-x64 --ignore-scripts \
     && npx --yes keystone postinstall --fix \
     && npm run build:ks 
 
+RUN chmod +x /app/run.sh && apk add --no-cache aws-cli postgresql-client
+
 ENV NODE_ENV=production
 
-CMD ["npm", "run", "start:ks"]
+CMD ["/app/run.sh"]

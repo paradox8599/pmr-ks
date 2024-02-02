@@ -11,11 +11,9 @@ dockerfile = "Dockerfile.admin"
 DB_PROVIDER = "postgresql"
 
 [env]
-NODE_ENV = "production"
-
 KS_PORT = "3000"
 
-STORE_BUCKET = "zcm"
+AWS_BUCKET = "zcm"
 
 NEXT_PUBLIC_GRAPHQL_PATH = "/api/graphql"
 NEXT_PUBLIC_SERVER_URL = "https://zcm.fly.dev"
@@ -24,10 +22,10 @@ NEXT_PUBLIC_SERVER_URL = "https://zcm.fly.dev"
 
 # DATABASE_URL = ""
 
-# STORE_ACCESS_KEY_ID = ""
-# STORE_SECRET_ACCESS_KEY = ""
-# STORE_CUSTOM_URL = ""
-# STORE_ENDPOINT = ""
+# AWS_ACCESS_KEY_ID = ""
+# AWS_SECRET_ACCESS_KEY = ""
+# AWS_CUSTOM_URL = ""
+# AWS_ENDPOINT_URL = ""
 
 [http_service]
 internal_port = 3000

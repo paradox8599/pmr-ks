@@ -19,10 +19,9 @@ export const GRAPHQL_PATH =
 export const GRAPHQL_ENDPOINT = new URL(GRAPHQL_PATH, SERVER_URL);
 
 export const BUCKET = {
-  bucketName: process.env.STORE_BUCKET,
-  accessKeyId: process.env.STORE_ACCESS_KEY_ID,
-  secretAccessKey: process.env.STORE_SECRET_ACCESS_KEY,
-  endpoint: process.env.STORE_ENDPOINT,
-  customUrl: process.env.STORE_CUSTOM_URL,
-  imagePrefix: process.env.STORE_PREFIX_IMAGE ?? "images/",
+  bucketName: process.env.AWS_BUCKET,
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  endpoint: process.env.AWS_ENDPOINT_URL,
+  customUrl: process.env.AWS_CUSTOM_URL,
 };
