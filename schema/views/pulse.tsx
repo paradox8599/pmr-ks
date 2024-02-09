@@ -43,11 +43,11 @@ export const Field = ({ value, onChange }: FieldProps<typeof controller>) => {
       <FieldLabel>Pulse</FieldLabel>
       {(["left", "right"] as const).map((side, i) => {
         return (
-          <div key={`${i}`}>
+          <div key={i.toString()}>
             <h5>{side.toUpperCase()}</h5>
             {(["cun", "guan", "chi"] as const).map((k, j) => {
               return (
-                <div key={`${j}`}>
+                <div key={j.toString()}>
                   <div>
                     {side}: {k.toUpperCase()}
                   </div>

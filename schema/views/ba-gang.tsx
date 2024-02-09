@@ -50,7 +50,7 @@ export const Field = ({ value, onChange }: FieldProps<typeof controller>) => {
       {data.map((d, i) => {
         return (
           <div
-            key={`${i}`}
+            key={i.toString()}
             style={{ display: "flex", alignItems: "center", margin: "1rem 0" }}
           >
             <div style={{ marginRight: "1rem", width: "2rem" }}>

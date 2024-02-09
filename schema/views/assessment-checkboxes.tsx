@@ -64,7 +64,7 @@ export const Field = ({
           if (key === "Other") {
             return (
               <li
-                key={`${i}`}
+                key={i.toString()}
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -96,7 +96,7 @@ export const Field = ({
             );
           }
           return (
-            <li key={`${i}`} style={{ padding: "0.25rem" }}>
+            <li key={i.toString()} style={{ padding: "0.25rem" }}>
               <Checkbox
                 checked={data[key] ?? false}
                 onChange={(e) => {
