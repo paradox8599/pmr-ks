@@ -1,5 +1,5 @@
-// const { PrismaClient } = require("@prisma/client");
 import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 import fs from "fs";
 
 let data = JSON.parse(fs.readFileSync("customers.json"));
@@ -12,6 +12,5 @@ data = data.map((item) => ({
   createdAt: new Date(item.Added),
 }));
 
-const prisma = new PrismaClient();
 await prisma.client.deleteMany({});
 await prisma.client.createMany({ data: data });
