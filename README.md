@@ -1,11 +1,5 @@
 # Next.js & Keystone.js for Client Record Management
 
-## TODO
-
-- user access controls
-- image relationship preview componment
-- image thumbnails
-
 ## Setup
 
 `npm install`
