@@ -34,6 +34,10 @@ NEXT_PUBLIC_GRAPHQL_PATH="/api/graphql"
 
 ## Notes
 
+### Body Picture
+
+Hardcoded in file `schema/views/kanvas.tsx`
+
 ### Data fetching
 
 #### Server side

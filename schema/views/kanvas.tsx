@@ -5,6 +5,7 @@ import { Image as KonvaImage, Layer, Stage } from "react-konva";
 import { Button } from "@keystone-ui/button";
 
 import { useJson } from "./hooks/useJson";
+import { BUCKET } from "../../src/lib/variables";
 
 type Point = { x: number; y: number };
 const initialValue: Point[] = [] as const;
@@ -35,8 +36,7 @@ export default function Kanvas({
 
   const image = React.useMemo(() => {
     const img = new Image();
-    img.src =
-      "https://pub-b55630bf7f0b47a1b7d4cfd51da53a77.r2.dev/images/d5776adc-5c89-4f1e-b41b-2d42a00a212a.png";
+    img.src = `https://pub-d480ef342abd4da8a350585414724877.r2.dev/body.png`;
     img.onload = () => {
       setRatio(img.height / img.width);
     };

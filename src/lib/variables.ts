@@ -1,3 +1,7 @@
+try {
+  require("dotenv").config();
+} catch (e) { }
+
 // KeystoneJS server config
 type DB_PROVIDER_TYPE = "sqlite" | "mysql" | "postgresql";
 
