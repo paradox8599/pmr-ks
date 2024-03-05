@@ -13,7 +13,7 @@ KS_PORT=3000
 
 # sqlite | mysql | postgresql
 DB_PROVIDER="postgresql"
-DATABASE_URL="postgresql://zcm:zcm@localhost:5432/zcm"
+DATABASE_URL="postgresql://zcm:zcm@localhost:5435/zcm"
 
 # Cloudflare R2 / AWS S3
 AWS_BUCKET="zcm"
