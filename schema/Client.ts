@@ -14,12 +14,12 @@ export const Client: Lists.Client = list({
     operation: {
       create: allowAll,
       query: allowAll,
-      update: IsRole(Role.Admin),
+      update:allowAll, 
       delete: IsRole(Role.Admin),
     },
     filter: {
       query: allowAll,
-      update: IsRole(Role.Admin),
+      update:allowAll, 
       delete: IsRole(Role.Admin),
     },
   },
@@ -52,7 +52,7 @@ export const Client: Lists.Client = list({
     },
   },
   fields: {
-    fullName: virtual({
+    name: virtual({
       field: graphql.field({
         type: graphql.String,
         resolve: async (item) => [item.firstName, item.lastName].join(" "),

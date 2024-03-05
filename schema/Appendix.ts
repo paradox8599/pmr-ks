@@ -13,8 +13,8 @@ export const Appendix: Lists.Appendix = list({
     operation: {
       create: allowAll,
       query: allowAll,
-      update: IsRole(Role.Admin),
-      delete: IsRole(Role.Admin),
+      update:allowAll, 
+      delete:allowAll, 
     },
   },
   fields: {
