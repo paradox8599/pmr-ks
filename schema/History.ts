@@ -71,7 +71,7 @@ export const afterOperation = async ({
 }: any) => {
   await context.sudo().query.History.createOne({
     data: {
-      operator: { connect: { id: context.session.itemId } },
+      operator: { connect: { id: context?.session?.itemId } },
       collection: listKey,
       operation,
       itemId: item?.id ?? originalItem?.id,

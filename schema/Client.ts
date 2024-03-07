@@ -1,8 +1,8 @@
 import { type Lists } from ".keystone/types";
 
-import { graphql, list } from "@keystone-6/core";
+import { list } from "@keystone-6/core";
 import { allowAll } from "@keystone-6/core/access";
-import { image, text, virtual } from "@keystone-6/core/fields";
+import { image, text } from "@keystone-6/core/fields";
 
 import { IsNotRole, IsRole } from "../admin/helpers/role";
 import { Role } from "../src/lib/types/auth";
@@ -29,6 +29,10 @@ export const Client: Lists.Client = list({
   },
   hooks: {
     afterOperation,
+    resolveInput: async ({ inputData, resolvedData }) => {
+      resolvedData.name = `${inputData.firstName} ${inputData.lastName}`;
+      return resolvedData;
+    },
     validateDelete: async ({
       addValidationError,
       item,
@@ -52,11 +56,11 @@ export const Client: Lists.Client = list({
     },
   },
   fields: {
-    name: virtual({
-      field: graphql.field({
-        type: graphql.String,
-        resolve: async (item) => [item.firstName, item.lastName].join(" "),
-      }),
+    name: text({
+      ui: {
+        createView: { fieldMode: "hidden" },
+        itemView: { fieldMode: "read" },
+      },
     }),
     firstName: text({ ui: { itemView: { fieldPosition: "sidebar" } } }),
     lastName: text({ ui: { itemView: { fieldPosition: "sidebar" } } }),
