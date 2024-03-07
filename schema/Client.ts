@@ -14,18 +14,18 @@ export const Client: Lists.Client = list({
     operation: {
       create: allowAll,
       query: allowAll,
-      update:allowAll, 
+      update: allowAll,
       delete: IsRole(Role.Admin),
     },
     filter: {
       query: allowAll,
-      update:allowAll, 
+      update: allowAll,
       delete: IsRole(Role.Admin),
     },
   },
   ui: {
     hideDelete: IsNotRole(Role.Admin),
-    listView: { initialColumns: ["fullName", "email", "phone", "createdAt"] },
+    listView: { initialColumns: ["name", "email", "phone", "note"] },
   },
   hooks: {
     afterOperation,
