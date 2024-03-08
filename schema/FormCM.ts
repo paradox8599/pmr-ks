@@ -34,6 +34,7 @@ export const cmForm: Lists.cmForm = list({
   ui: {
     hideDelete: IsNotRole(Role.Admin),
     listView: {
+      initialSort: { field: "updatedAt", direction: "DESC" },
       initialColumns: [
         "label",
         "client",

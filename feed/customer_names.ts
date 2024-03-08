@@ -3,7 +3,8 @@ import { keystoneContext as ctx } from "../src/keystone/context";
 const prisma = ctx.prisma;
 
 const clients = await prisma.client.findMany({
-  where: { name: { equals: "" } },
+  // where: { name: { equalr: "" } },
+  orderBy: { createdAt: "asc" },
 });
 
 console.log(`Updating names for ${clients.length} clients`);

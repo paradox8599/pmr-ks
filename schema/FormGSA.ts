@@ -33,6 +33,7 @@ export const gsaForm: Lists.gsaForm = list({
   ui: {
     hideDelete: IsNotRole(Role.Admin),
     listView: {
+      initialSort: { field: "updatedAt", direction: "DESC" },
       initialColumns: [
         "label",
         "client",

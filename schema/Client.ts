@@ -25,7 +25,10 @@ export const Client: Lists.Client = list({
   },
   ui: {
     hideDelete: IsNotRole(Role.Admin),
-    listView: { initialColumns: ["name", "email", "phone", "note"] },
+    listView: {
+      initialSort: { field: "createdAt", direction: "DESC" },
+      initialColumns: ["name", "email", "phone", "note", "createdAt"],
+    },
   },
   hooks: {
     afterOperation,
@@ -59,7 +62,7 @@ export const Client: Lists.Client = list({
     name: text({
       ui: {
         createView: { fieldMode: "hidden" },
-        itemView: { fieldMode: "read" },
+        itemView: { fieldMode: "read", fieldPosition: "sidebar" },
       },
     }),
     firstName: text({ ui: { itemView: { fieldPosition: "sidebar" } } }),

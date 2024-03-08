@@ -49,3 +49,4 @@ keystone.db
 schema.*
 
 *.json
+*.sql

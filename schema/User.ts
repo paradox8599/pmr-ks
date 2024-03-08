@@ -36,6 +36,9 @@ export const User: Lists.User = list({
   ui: {
     hideCreate: IsNotRole(Role.Admin),
     hideDelete: IsNotRole(Role.Admin),
+    listView: {
+      initialSort: { field: "updatedAt", direction: "DESC" },
+    },
   },
   hooks: {
     validateDelete: async ({
