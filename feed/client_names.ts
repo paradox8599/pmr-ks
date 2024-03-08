@@ -1,3 +1,5 @@
+// generate full names for clients
+
 import { keystoneContext as ctx } from "../src/keystone/context";
 
 const prisma = ctx.prisma;
