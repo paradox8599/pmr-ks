@@ -20,7 +20,7 @@ AWS_BUCKET="zcm"
 AWS_ENDPOINT_URL=""
 AWS_CUSTOM_URL=""
 AWS_ACCESS_KEY_ID=""
-AWS_SECRET_ACCESS_KEY=""
+NEXT_PUBLIC_AWS_CUSTOM_URL=""
 
 # using nextjs graphql route as server so no need to start a keystone server
 NEXT_PUBLIC_SERVER_URL="http://localhost:4000"

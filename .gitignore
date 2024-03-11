@@ -49,4 +49,6 @@ keystone.db
 schema.*
 
 *.json
+!package.json
+!package-lock.json
 *.sql

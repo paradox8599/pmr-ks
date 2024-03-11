@@ -32,5 +32,5 @@ export const BUCKET = {
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   endpoint: process.env.AWS_ENDPOINT_URL,
-  customUrl: process.env.AWS_CUSTOM_URL,
+  customUrl: process.env.NEXT_PUBLIC_AWS_CUSTOM_URL,
 };

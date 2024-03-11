@@ -156,7 +156,17 @@ export const gsaForm: Lists.gsaForm = list({
         displayMode: "textarea",
       },
     }),
-    appendix: relationship({ ref: "Appendix", many: true }),
+    appendix: relationship({
+      ref: "Appendix",
+      many: true,
+      ui: {
+        // displayMode: "cards",
+        // cardFields: ["name", "image"],
+        // inlineCreate: { fields: ["name", "image"] },
+        // inlineEdit: { fields: ["name", "image"] },
+        // inlineConnect: true,
+      },
+    }),
     createdAt: createdAtField(),
     updatedAt: updatedAtField(),
   },
