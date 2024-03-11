@@ -32,8 +32,10 @@ export const Client: Lists.Client = list({
   },
   hooks: {
     afterOperation,
-    resolveInput: async ({ inputData, resolvedData }) => {
-      resolvedData.name = `${inputData.firstName} ${inputData.lastName}`;
+    resolveInput: async ({ item, inputData, resolvedData }) => {
+      const firstName = inputData.firstName || item?.firstName;
+      const lastName = inputData.lastName || item?.lastName;
+      resolvedData.name = `${firstName} ${lastName}`;
       return resolvedData;
     },
     validateDelete: async ({
