@@ -16,21 +16,21 @@ type AllDrawingData = [DrawingData, DrawingData, DrawingData, DrawingData];
 type DataSetterProp = DrawingData | ((prev: DrawingData) => DrawingData);
 const initialValue: AllDrawingData = [[], [], [], []] as const;
 
-function useMediaQuery(query: string) {
-  const mediaQuery = React.useMemo(() => window.matchMedia(query), [query]);
-  const [match, setMatch] = React.useState(mediaQuery.matches);
-  React.useEffect(() => {
-    const onChange = () => setMatch(mediaQuery.matches);
-    mediaQuery.addEventListener("change", onChange);
-    return () => mediaQuery.removeEventListener("change", onChange);
-  }, [mediaQuery]);
-  return match;
-}
-
-function useMediaQueries() {
-  const sm = useMediaQuery("(max-width: 768px)");
-  return { sm };
-}
+// function useMediaQuery(query: string) {
+//   const mediaQuery = React.useMemo(() => window.matchMedia(query), [query]);
+//   const [match, setMatch] = React.useState(mediaQuery.matches);
+//   React.useEffect(() => {
+//     const onChange = () => setMatch(mediaQuery.matches);
+//     mediaQuery.addEventListener("change", onChange);
+//     return () => mediaQuery.removeEventListener("change", onChange);
+//   }, [mediaQuery]);
+//   return match;
+// }
+//
+// function useMediaQueries() {
+//   const sm = useMediaQuery("(max-width: 768px)");
+//   return { sm };
+// }
 
 const IMAGE_URLS = [
   `${BUCKET.customUrl}/body_back.png`,
@@ -160,6 +160,7 @@ function ImageCard({
           stroke: "red",
         });
       }
+      // https://konvajs.org/api/Konva.Line.html
       return new Konva.Line({
         points: path.flatMap(({ x, y }) => [x * w, y * h]),
         stroke: "red",
