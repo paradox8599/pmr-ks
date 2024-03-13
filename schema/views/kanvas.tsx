@@ -8,6 +8,21 @@ import { AlertDialog } from "@keystone-ui/modals";
 
 import { useJson } from "./hooks/useJson";
 
+/*
+ * The data format has been changed once
+ * the old format: {x: number; y: number;}[]
+ * It was for the single background picture and only supports single points
+ *
+ * The new format: [Path[], Path[], Path[], Path[]]
+ * Splited into 4 images, each for one side of body (back, left, front, right)
+ * Each image stores a list of paths, which is a list of points.
+ * If Path contains one or two points, it will be displayed as a circle,
+ * otherwise a line follows the path will be drawn.
+ *
+ * The old format is converted into new format in a useEffect hook
+ * Split the points into 4 lists based on their x coordinate, 0.25 each
+ */
+
 type Point = { x: number; y: number };
 type OldDrawingData = Point[];
 type Path = Point[];
@@ -297,17 +312,17 @@ export default function Kanvas({
     };
   };
 
-  // format old data
-  const [formatted, setFormatted] = React.useState(false);
+  // convert old data
+  const [converted, setConverted] = React.useState(false);
   React.useEffect(() => {
-    if (formatted) return;
+    if (converted) return;
     if (!data) return;
-    setFormatted(true);
+    setConverted(true);
     const oldData = data as unknown as OldDrawingData;
     const isOldData =
       oldData.map((d) => d.x).some((x) => x !== void 0) || oldData.length === 0;
     if (isOldData) {
-      const translated = [
+      const newData = [
         oldData
           .filter((p) => p.x < 0.25)
           .map((point) => [{ x: point.x * 4 - 0.02, y: point.y }]),
@@ -321,10 +336,10 @@ export default function Kanvas({
           .filter((p) => p.x >= 0.75)
           .map((point) => [{ x: (point.x - 0.75) * 4, y: point.y }]),
       ];
-      setData(translated.map((p) => [...p, []]) as AllDrawingData);
+      setData(newData.map((p) => [...p, []]) as AllDrawingData);
     }
-  }, [data, setData, formatted]);
-  if (!formatted) return <></>;
+  }, [data, setData, converted]);
+  if (!converted) return <></>;
   return (
     <div>
       <PopupKanvas data={data} setSingleDataFactory={setSingleDataFactory} />
