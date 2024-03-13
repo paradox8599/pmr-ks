@@ -69,7 +69,7 @@ export const gsaForm: Lists.gsaForm = list({
     }),
 
     client: relationship({
-      ref: "Client",
+      ref: "Client.gsaForms",
       many: false,
       ui: { itemView: { fieldPosition: "sidebar" } },
       hooks: {

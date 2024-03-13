@@ -203,8 +203,12 @@ function ImageCard({
             justifyContent: "space-around",
           }}
         >
-          <Button onClick={undo}>Undo</Button>
-          <Button onClick={clear}>Clear</Button>
+          <Button size="small" onClick={undo}>
+            Undo
+          </Button>
+          <Button size="small" onClick={clear}>
+            Clear
+          </Button>
         </div>
       )}
     </div>
@@ -243,6 +247,7 @@ function PopupKanvas({
           }}
         >
           <Button
+            size="small"
             onClick={() =>
               setPage(
                 (prev) => (prev - 1 + IMAGE_URLS.length) % IMAGE_URLS.length,
@@ -251,7 +256,11 @@ function PopupKanvas({
           >
             &lt;&lt;&lt; Prev
           </Button>
+          <Button size="small" onClick={() => setShow(false)}>
+            Close
+          </Button>
           <Button
+            size="small"
             onClick={() => setPage((prev) => (prev + 1) % IMAGE_URLS.length)}
           >
             Next &gt;&gt;&gt;

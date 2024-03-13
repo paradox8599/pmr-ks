@@ -69,7 +69,7 @@ export const cmForm: Lists.cmForm = list({
       }),
     }),
     client: relationship({
-      ref: "Client",
+      ref: "Client.cmForms",
       many: false,
       ui: { itemView: { fieldPosition: "sidebar" } },
       hooks: {

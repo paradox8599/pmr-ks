@@ -2,7 +2,7 @@ import { type Lists } from ".keystone/types";
 
 import { list } from "@keystone-6/core";
 import { allowAll } from "@keystone-6/core/access";
-import { image, text } from "@keystone-6/core/fields";
+import { image, relationship, text } from "@keystone-6/core/fields";
 
 import { IsNotRole, IsRole } from "../admin/helpers/role";
 import { Role } from "../src/lib/types/auth";
@@ -76,6 +76,22 @@ export const Client: Lists.Client = list({
     consentPage2: image({ storage: "r2_image" }),
     consentPage3: image({ storage: "r2_image" }),
     consentPage4: image({ storage: "r2_image" }),
+    gsaForms: relationship({
+      ref: "gsaForm.client",
+      many: true,
+      ui: {
+        createView: { fieldMode: "hidden" },
+        itemView: { fieldMode: "hidden" },
+      },
+    }),
+    cmForms: relationship({
+      ref: "cmForm.client",
+      many: true,
+      ui: {
+        createView: { fieldMode: "hidden" },
+        itemView: { fieldMode: "hidden" },
+      },
+    }),
     createdAt: createdAtField(),
     updatedAt: updatedAtField(),
   },
