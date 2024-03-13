@@ -35,7 +35,7 @@ export const Client: Lists.Client = list({
     resolveInput: async ({ item, inputData, resolvedData }) => {
       const firstName = inputData.firstName || item?.firstName;
       const lastName = inputData.lastName || item?.lastName;
-      resolvedData.name = `${firstName} ${lastName}`;
+      resolvedData.name = `${firstName ?? ""} ${lastName ?? ""}`;
       return resolvedData;
     },
     validateDelete: async ({
@@ -71,7 +71,9 @@ export const Client: Lists.Client = list({
     lastName: text({ ui: { itemView: { fieldPosition: "sidebar" } } }),
     email: text({ ui: { itemView: { fieldPosition: "sidebar" } } }),
     phone: text({ ui: { itemView: { fieldPosition: "sidebar" } } }),
-    note: text({ ui: { itemView: { fieldPosition: "sidebar" } } }),
+    note: text({
+      ui: { displayMode: "textarea", itemView: { fieldPosition: "sidebar" } },
+    }),
     consentPage1: image({ storage: "r2_image" }),
     consentPage2: image({ storage: "r2_image" }),
     consentPage3: image({ storage: "r2_image" }),
@@ -81,7 +83,7 @@ export const Client: Lists.Client = list({
       many: true,
       ui: {
         createView: { fieldMode: "hidden" },
-        itemView: { fieldMode: "hidden" },
+        itemView: { fieldMode: "read" },
       },
     }),
     cmForms: relationship({
@@ -89,7 +91,7 @@ export const Client: Lists.Client = list({
       many: true,
       ui: {
         createView: { fieldMode: "hidden" },
-        itemView: { fieldMode: "hidden" },
+        itemView: { fieldMode: "read" },
       },
     }),
     createdAt: createdAtField(),

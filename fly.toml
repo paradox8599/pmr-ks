@@ -9,6 +9,7 @@ dockerfile = "Dockerfile.admin"
 
 [build.args]
 DB_PROVIDER = "postgresql"
+NEXT_PUBLIC_AWS_CUSTOM_URL = "https://pub-d480ef342abd4da8a350585414724877.r2.dev"
 
 [env]
 KS_PORT = "3000"

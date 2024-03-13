@@ -304,18 +304,19 @@ export default function Kanvas({
     if (!data) return;
     setFormatted(true);
     const oldData = data as unknown as OldDrawingData;
-    const isOldData = oldData.map((d) => d.x).some((x) => x !== void 0);
+    const isOldData =
+      oldData.map((d) => d.x).some((x) => x !== void 0) || oldData.length === 0;
     if (isOldData) {
       const translated = [
         oldData
           .filter((p) => p.x < 0.25)
-          .map((point) => [{ x: point.x * 4, y: point.y }]),
+          .map((point) => [{ x: point.x * 4 - 0.02, y: point.y }]),
         oldData
           .filter((p) => p.x >= 0.25 && p.x < 0.5)
           .map((point) => [{ x: (point.x - 0.25) * 4, y: point.y }]),
         oldData
           .filter((p) => p.x >= 0.5 && p.x < 0.75)
-          .map((point) => [{ x: (point.x - 0.5) * 4, y: point.y }]),
+          .map((point) => [{ x: (point.x - 0.5) * 4 - 0.13, y: point.y }]),
         oldData
           .filter((p) => p.x >= 0.75)
           .map((point) => [{ x: (point.x - 0.75) * 4, y: point.y }]),

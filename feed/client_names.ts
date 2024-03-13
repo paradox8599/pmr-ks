@@ -16,7 +16,7 @@ await Promise.all(
     prisma.client.update({
       where: { id: c.id },
       data: {
-        name: `${c.firstName} ${c.lastName}`.trim(),
+        name: `${c.firstName ?? ""} ${c.lastName ?? ""}`.trim(),
       },
     }),
   ),
